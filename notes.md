@@ -53,11 +53,9 @@ If you've done all the steps, and still stuck, only allow 20 min before you ask 
 
 Concept questions - try to understand it, then ask. 
 
-
-to change the git origin master URL use the following:
-```terminal
-git remote set-url origin new.git.url/here
-```
+<h2>Git tips</h2>
+To change the git origin master URL use the following:
+```git remote set-url origin new.git.url/here```
 
 Add ```git config core.autocrlf true``` to your git to avoid <i>warning: LF will be replaced by CRLF in lib/atm.rb.</i> warnings that can occur since I'm using a Mac/unix. 
 
@@ -124,7 +122,8 @@ Math.log2(2) => 1.0
 Math.log2(4) => 2.0
 
 <b> .strftime() vs. .strptime() or Time vs Date vs DateTime</b> 
-Always use ```require 'time' or 'date' or 'DateTime' ```
+
+Always use ```require 'time' or 'date' or 'DateTime'```
 Syntax ex.: strftime '27/04/2018'("%d-%m-%Y")
 %Y - year with century, %y - year in 2 digits.
 
@@ -133,15 +132,17 @@ Syntax ex.: strftime '27/04/2018'("%d-%m-%Y")
 - Date class is a calendar date with no associated times. 
 
 <b> Magic numbers/ refactoring technique: introduce constant/extract constant/replace magic numbers with symbolic constant</b>
-Magic numbers are hardcoded numbers which can't be changed. To remove a magic number we use constants which are given SCREAMING_SNAKE_CASE names. 
+Magic numbers are hardcoded numbers which can't be changed. To remove a magic number we use constants which are given SCREAMING_SNAKE_CASE names.
+
 ```rb example: 
 class User < ActiveRecord::Base
-  ...
   # Constants introduced to replace the
   # magic numbers in allow_to_comment?
   COMMENTER_MINIMUM_AGE_IN_YEARS = 13
   MAXIMUM_COMMENTS_PER_HOUR = 20
+```
 
+```rb
   def allow_to_comment?
     age_in_years >= COMMENTER_MINIMUM_AGE_IN_YEARS &&
       comments_in_last_hour.size <= MAXIMUM_COMMENTS_PER_HOUR
@@ -195,3 +196,99 @@ Inner dialogue of questioning what's happening each step of the way.
 - experimentation/trail and error. 
 
 
+<h1>How to use the internet to find your answers demo with Faraz Naeem</h1>
+
+You can google the errormessages but start with official documentation. 
+
+
+ Tip: Read the official documentation often & little by little, find a method and read about it.
+
+
+<h2>For Ruby </h2>
+First check offical documentation: rubygems.org, ruby-doc.org
+
+- Rubygems.org
+resource for sourcecode and debugging/if code isn't working. 
+
+- Ruby-lang.org
+
+- Ruby-doc.org
+ 
+
+<h2>For JavaScript</h2>
+First check: https://developer.mozilla.org
+
+*TO DO: read offical js documentation during weekend: asynchronous js.
+
+npmjs.com
+- search here for whatever package you're building. This is official documentation for javascript packages. 
+
+<h2>Other ways</h2>
+Do copy the entire errormessage. 
+(When working with deepwest? etc - do google it.)
+
+- http://stackoverflow.com
+  When asking - be very specific. 
+  
+  Be cautious of the date of the ask, was it active recently?.
+
+  Do read more than the first answers.
+
+- http://github.com/CraftAcademy/CraftOverflow/issues
+  practice to write questions here!
+  Look through the issues here to find your answer!
+
+- Google for Cheatsheet! 
+  Make sure it's still relevant!
+
+- google: what are ?? ELI5 
+- google: WTF are ??
+
+
+
+
+<h1> LAMBDA, blockers and Proc</h1> 
+source:
+
+- https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/ 
+- https://www.honeybadger.io/blog/using-lambdas-in-ruby/
+
+<h3> Blocks</h3>
+Blocks är enclosed in a do / end statement or between { }, they can have multiple arguments. 
+The argument names är defined between pipes ||.
+For example, in single line blocks. 
+
+```rb
+[1,2,3].each { |num| puts num}
+```
+The |num| is a block with the arguments, the puts num is a block with the body. 
+
+```rb In multi-line blocks:
+[1,2,3].each do |num|
+puts num
+end
+``` 
+<h3> Lambda</h3>
+Lambda is a special Proc object. Lambdas are a way to define a block and it's parameters. the syntax is: ```->``` as in: ``` say_something ? -> { puts 'this is a lambda'}```. Alternative syntax: ```lambda``` instead of ->. 
+
+You use the .call method to run the code inside the lambda. Other ways to run it:
+
+```rb
+ex_lambda = -> {puts 'lambda called'}
+ex_lambda.call 
+ex_lambda.()
+ex_lambda[] #perfect to use instead of arrays
+ex_lambda.===
+```
+Lambdas can take argumens as so ```times_two = ->(x) {x*2}```. Upon ```times_two.call(10)``` we get #20.
+
+<h3> Proc</h3>
+A Proc will return from the current context, a lambda will return normally, like a regular method. Procs don't really care about the number of arguments. 
+
+Procs are defined with Proc.new {}
+
+Procs and lambdas have the <b>closures</b>attribute:
+
+This concept, which is sometimes called closure, means that a proc will carry with it values like local variables and methods from the context where it was defined.
+
+They don’t carry the actual values, but a reference to them, so if the variables change after the proc is created, the proc will always have the latest version.

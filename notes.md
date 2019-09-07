@@ -59,6 +59,15 @@ To change the git origin master URL use the following:
 
 Add ```git config core.autocrlf true``` to your git to avoid <i>warning: LF will be replaced by CRLF in lib/atm.rb.</i> warnings that can occur since I'm using a Mac/unix. 
 
+```git reset --hard HEAD``` throws away any uncomitted changes
+```git stash``` stashed untracked files so that you call git pull from someone else. 
+```git stash drop``` deleted stashed files 
+To remove cruft files or clean your working directory run ```git clean```. To remove all the untracked files in your working directory, run ```git clean -f -d```, which removes any files and also any subdirectories that become empty as a result.
+
+```git remote set-url origin URLoforiginrepo```
+
+to install a version of ruby: $rvm install ruby 2.3.1
+
 
 <h2> GIT PONG </h2>
 First opens a repository and commits, second forks that repository, does git clone repo/url and starts coding and commits. The first then:
@@ -292,3 +301,83 @@ Procs and lambdas have the <b>closures</b>attribute:
 This concept, which is sometimes called closure, means that a proc will carry with it values like local variables and methods from the context where it was defined.
 
 They don’t carry the actual values, but a reference to them, so if the variables change after the proc is created, the proc will always have the latest version.
+
+
+<h1> WEEKEND-CHALLENGE: Library challenge </h1>
+See the course material for Object Oriented Programming Fundamentals. 
+
+Everything we need to complete this is in the ATM-challenge, find inspiration and bring your knowledge into a new domain. 
+Be submitted by Monday morning! Use google, stackoverflow, notes etc to complete the challenge. Reference it in the readme! 
+
+No codesupport on this one ;) 
+  if lost - go through our atm-challenge-code. 
+
+Thoughts:
+Returndate - like expiredate! 
+simple is better than complicated! 
+
+<h2>Reading and writing YAML-files (YAML Ain't Markup Language)</h2>
+YAML-files are textfiles in which which we can store data in a orderly manner.
+
+YAML is a human friendly data serialization stanard for all programming languages. 
+
+Data serialization is a way to organise any thing of content. YAML is a kind of version of the same concept as Jason. It takes a piece of data and organises, stores it and structures it in a specific way. 
+
+
+<h3>Separation of concerns -</h3> 
+In the libararychallenge we use YAML to store the data in a data layer instead of storing it in a hash inside the logic layer. 
+
+Even methods should be separated in the logic layer. 
+
+<h3>The YAML properties:</h3>
+
+- syntax matters a lot
+- whitespace indentation (indentation  & whitespace sensistive)
+- used for storing information ( a set up file, list of books, list of customers)
+- needs to follow a structure
+
+<h3> YAML format </h3>
+
+- :property:
+    :title: 'Pippi'
+    :author: 'Astrid Lindgren'
+  :available: true
+  :return_date: 
+- :nextProperty:
+    :title: 'Lotr'
+    :author: 'Tolkein'
+  :available: false
+  :return_date: 2019_10_22
+- :nextNextProperty: 
+etc...
+
+Takes the info from a file and returns it in a ruby array with hashs with key value pairs. Means that we can use the hash-methods on it to manipulate data, add data, delete data, amend data.
+
+<h3>Reading and writing YAML</h3> 
+
+```File.open('some_file_name.txt', 'w')``` the w tells us we want to write to files with ruby
+```File.open('some_file_name.txt', 'r')``` the r tell us we want to read files with ruby 
+```File.open('./lib/data.yml', 'w') { |f| f.write colletion.to_yaml}``` using a codeblock to add information to yaml
+
+IN IRB - not the same as open and writing a YAML file. File-suffix is .yml
+```
+open irb
+  require 'yaml' => true
+create a variable:
+  collection = YAML.load('.lib/data.yml)
+  collection => gives us the array with hashes inside
+  collection.select {|book<is the iteration variable>| book[:item][:title].include? 'Pippi'<can also use "">}
+To modify the first object in the YAML file, which is currently set to :true
+  collection[0][:available] = false => false
+Now we need to store/write the information in the YAML file
+  File.open(.lib/data.yml', 'w') {|book| book.write collection.to_yaml}
+First we tell it to open and that we want to write, then within the curlybrackets we make the item book accessible for us to manipulate, by the book.write colletion.to_yaml we're saving it. 
+then you want to find the book again to show ruby it's changed.
+collection.select {|book| book[:item][:title].include? 'Pippi'>}
+```
+
+
+
+
+
+

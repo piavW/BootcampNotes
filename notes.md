@@ -359,25 +359,80 @@ Takes the info from a file and returns it in a ruby array with hashs with key va
 ```File.open('some_file_name.txt', 'r')``` the r tell us we want to read files with ruby 
 ```File.open('./lib/data.yml', 'w') { |f| f.write colletion.to_yaml}``` using a codeblock to add information to yaml
 
+VERY CASE SENSITIVE
 IN IRB - not the same as open and writing a YAML file. File-suffix is .yml
 ```
 open irb
   require 'yaml' => true
 create a variable:
-  collection = YAML.load('.lib/data.yml)
-  collection => gives us the array with hashes inside
-  collection.select {|book<is the iteration variable>| book[:item][:title].include? 'Pippi'<can also use "">}
+
+```
+collection = YAML.load_file('.lib/data.yml)
+collection => gives us the array with hashes inside
+collection.select {|book<is the iteration variable>| book[:item][:title].include? 'Pippi'<can also use "">}
+```
+
 To modify the first object in the YAML file, which is currently set to :true
-  collection[0][:available] = false => false
+```collection[0][:available] = false => false```
 Now we need to store/write the information in the YAML file
-  File.open(.lib/data.yml', 'w') {|book| book.write collection.to_yaml}
+```File.open('.lib/data.yml', 'w') {|book| book.write collection.to_yaml}```
 First we tell it to open and that we want to write, then within the curlybrackets we make the item book accessible for us to manipulate, by the book.write colletion.to_yaml we're saving it. 
 then you want to find the book again to show ruby it's changed.
-collection.select {|book| book[:item][:title].include? 'Pippi'>}
+```collection.select {|book| book[:item][:title].include? 'Pippi'>}```
+
+To check out:
+we need to change a specific books:
+- availability : true/false
+- return date : set_return_Date and nil
+
+We know how to access the first books availability
+We don't know how to access any other books availability.... 
+
+visitor searches for book by title or author $
+sees if it is available (shown when u've searched) $
+if available - visitor checks out 
+searched book changes availability,
+searched book gets return date
+visitor gets a list of checked out books and their return date (or just the entire info of the book with availability and all?)  as in statusmessage for withdraw case when. 
+
+We don't have a userstory or need to create a check back in for book....! 
+
 ```
 
 
+Difference between Class method and instance method.
+ex. 
+
+```rb
+class SayHello
+  def self.from_the_class
+    "Hello, from a class method"
+  end
+
+  def from_an_instance
+    "Hello, from an instance method"
+  end
+end
+```
+>> SayHello.from_the_class
+=> "Hello, from a class method"
+
+>> SayHello.from_an_instance
+=> undefined method `from_an_instance' for SayHello:Class
 
 
+>> hello = SayHello.new
+>> hello.from_the_class
+=> undefined method `from_the_class' for #<SayHello:0x0000557920dac930>
 
+>> hello.from_an_instance
+=> "Hello, from an instance method"
+We can't call an instance method on the class itsel, and we can't directly call a class mathod on an instance. 
+To call an instance method we first have to create a new instance. 
 
+<h2>Index</h2>
+
+index - is a built-in method in ruby to find the index of an array. 
+So if we in library-challenge ask for 
+```collection.detec{|b| b[:item][:title] == b}```we ask it to find the exact input using the detec method. 
+```collecion.index {|b| b[:iteam][:title] == b} ```it can find the index matching the title of previously inputted search.  

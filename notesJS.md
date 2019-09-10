@@ -1,9 +1,10 @@
-<h1>Notes about JavaScript starting with week 2</h1>
+# Notes about JavaScript starting with week 2
 
 For beginners JS notes go to my github repository ITPnotes. 
 
+---
 
-<h2>Introduction to JavaScript ES6 with Faraz Naeem</h2>
+## Introduction to JavaScript ES6 with Faraz Naeem
 
 ECMAScript organisation - created to standardise the JavaScript language.
 
@@ -22,20 +23,19 @@ The ES6 version (also called ES2015) is supported by chrome, firefox, opera, saf
 We need to make sure our code is supported by the browsers. 
 We use the transpilation tool BABEL to change our code to function with the right broswers.
 
-<h3>var .vs let/constant</h3>
+### var .vs let/constant
 The old way to declare a variable: 
 
 ```js
 var myVariable = 12
 console.log(myVariable)
 ```
-We use <i>var</i> for special cases, like when we're dealing with a global scope. 
+We use *var* for special cases, like when we're dealing with a global scope. 
 
-<b>Var is a global variable!</b>
+**Var is a global variable!**
 
 The new and optimal way to declare a variable:
-
-<b>let is a local variable!</b>
+**let is a local variable!**
 
 ```js
 let myNewVariable = 'Faraz'
@@ -48,10 +48,11 @@ We use let when we know we'll reassign the value of the variable.
 const myArray = [1,2,3]
 console.log(myArray)
 ```
-the <i>const</i> is used then the variable value isn't supposed to be reassigned. We can't reassign by coding ```myArray = [4,5,6]``` if we do we'll get an errormessage since we're not allowed to reassign the variable value of the const. 
-<b> However</b> we can manipulate the data like add something to the const by myArray.push(4) or delete things myArray.pop(4) for example.
 
-<h3>Template string/string templating (called string interpolation in Ruby) </h3>
+the *const* is used then the variable value isn't supposed to be reassigned. We can't reassign by coding `myArray = [4,5,6]` if we do we'll get an errormessage since we're not allowed to reassign the variable value of the const. 
+**However** we can manipulate the data like add something to the const by myArray.push(4) or delete things myArray.pop(4) for example.
+
+### Template string/string templating (called string interpolation in Ruby) 
 
 ```js
 let faraz = 'Faraz'
@@ -66,7 +67,7 @@ myGreeting = `Hello ${sverrir}!, how are you?`
 console.log(myGreeting)
 ```
 
-<h3>Arrow functions</h3>
+### Arrow functions
 Old-fashioned way to write anonymous functions (anonymous functions are basicly callbacks)
 
 ```js
@@ -120,15 +121,17 @@ greeting() //greeting can be found
 console.log(myGreeting) //this can't be found since myGreeting is hidden within the greeting function.
 ```
 
-<h2>More about JavaScript</h2>
+--- 
 
-<h3>REPL (Read-Eval-Print-Loop)</h3>, also called: interactive top-level or language shell. Is simple, interatice computer programming environment that takes single user inputs, evaluates them and returns the result to the user. 
+# More about JavaScript
+
+## REPL (Read-Eval-Print-Loop)
+also called: interactive top-level or language shell. Is simple, interatice computer programming environment that takes single user inputs, evaluates them and returns the result to the user. 
 
 REPLs facilitate exploratory programming and debugging because the programmer can inspec the printed result before deciding what expressions to provide for the next read. It gives us immediate feedback if we have any errors in our code.
 Using a tool called repl.it <https://repl.it/> we can add code directly to the section, press run, and will get an output directly in the section. 
 
-<h3>Defining an arrow function:</h3>
-
+### Defining an arrow function:
 (param1, param2) => { statements }
 When we don't use curly bracket the arrow function has an implicit return meaning it will return the value
 
@@ -142,7 +145,7 @@ If we are writing arrow functions without parameters then we need to have bracke
 () => expression
 () => { return expression; }
 
-You cannot use ```return``` outside of a function. 
+You cannot use `return` outside of a function. 
 
 Example: 
 Original:
@@ -182,7 +185,7 @@ greet('Clarissa', (val) => console.log(`Bonjour ${val}`))
 //this prints Bonjour Clarissa
 ``` 
 
-<h2>Destructuring</h2>
+## Destructuring
 gives us the ability to extract data from objects and arrays and set them with new variables.
 
 example:
@@ -226,7 +229,8 @@ people.forEach(( {name, age} ) => {
   console.log(`Hi, my name is ${name}, I am a ${age} year old`)
 }) 
 ```
-When we put the parameters inside curly-brackets we change them from parameters to variables of the specified key value pairs created in the people array with hashes with key:value-pairs. We then don't need to specify the parameter before calling the key-name. <i>(I think I get this)</i>
+
+When we put the parameters inside curly-brackets we change them from parameters to variables of the specified key value pairs created in the people array with hashes with key:value-pairs. We then don't need to specify the parameter before calling the key-name. *(I think I get this)*
 
 We can also rename the :keys to something else:
 ```js
@@ -235,7 +239,7 @@ people.forEach(({ name: n, age: a }) => {
   console.log(`Hi, my name is ${n}, I am a ${a} year old`)
 })
 ```
-<h2> For Loop vs. Array.forEach()</h2>
+## For Loop vs. Array.forEach()
 The for-loop
 
 ```js
@@ -254,7 +258,7 @@ for (var i = 0; i < people.length; i++) {
 //   puts "Hello, #{person.name}"
 // end
 
-<b>Here are 2 ways to write the Array.forEach() loop </b>
+**Here are 2 ways to write the Array.forEach() loop**
 
 ```js
 people.forEach(function(person) {
@@ -269,16 +273,17 @@ people.forEach((person) => {
  // Can also be writen as follow
 ```
 
-<h3> map() method</h3>
+### map() method
 The map() method creates a new array with the results of calling a provided function on every element in the calling array.
 
+---
 
-<h1> demo Asynchronous programming with JavaScript with Faraz Naeem</h1>
+# demo Asynchronous programming with JavaScript with Faraz Naeem
 Source with good information: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous
 
-The problem is that the Processor - CPU - processes one thing at the time, it won't do the next thing before it's done with the thing it's doing, this creates a que and your program waits until it's finished, - this is <b>synchronous programming</b>.
+The problem is that the Processor - CPU - processes one thing at the time, it won't do the next thing before it's done with the thing it's doing, this creates a que and your program waits until it's finished, - this is **synchronous programming**.
 
-With <b>asynchronous programming</b> we execute more than one action/function at the same time. We have not stopping-actions. 
+With **asynchronous programming** we execute more than one action/function at the same time. We have not stopping-actions. 
 
 This allows multiple things to happen at the same time, when you start a blocking action, the program will carry on. When the action is finished, the program will be notified and will get access to the results.
 
@@ -289,14 +294,14 @@ Solutions for async-code
 - promises (comes with ES6)
 - async/Await (now the prefered way)
 
-<h3>Callbacks</h3>
+### Callbacks
 We pass in another function as an argument. 
 //Arguments are the raw material that we pass into a function. If I want a function to write my name, I'll pass in my name as an argument. 
 
 callback tell the program to wait until the next function completes. 
 Once we start calling callbacks, we need to call them on and on and on which leads to a huge callback que aka callback hell. 
 
-<h3>Promises</h3>
+### Promises
 syntax: new Promise(
     function (resolve, reject){
         //here we create our resolve function {
@@ -310,7 +315,7 @@ syntax: new Promise(
 );
 
 
-<h3>Async/Await</h3>
+### Async/Await
 By placing async infront of a function that makes it asynchronous with a built in promise. 
 by putting await before the promise is resolved.
 myFunction()
@@ -318,7 +323,7 @@ myFunction()
 .catch
 
 
-<h1> [WIP]more stuff </h1>
+## [WIP]more stuff 
 Javascript (ES5) doesn’t have a formal class notation, but you can create a “constructor” function and add methods to it. Examples from here.
 
 ```js
@@ -347,9 +352,8 @@ bob.fullName();
 // "Thomas Ochman"
 ```
 
-
-<h2>Exercises:</h2>
-Excercises #1
+## Exercises:
+### Excercises #1
 
 - 1. Create an array and add three numbers to it.
 ```js
@@ -390,17 +394,15 @@ console.log(emptyArray)
 ```
 
 
-Excercises #2
-- 1. What is this? Does it have an equivalent in Ruby?
+### Excercises #2
+1. What is this? Does it have an equivalent in Ruby?
 
 This is an object, kind of like the self in Ruby, it refers to the current calling context. 
 
 In a function, this, refers to the global object but can be something else depending on how the function is called.
 In a method, this, refers to  the owner object.
 
-
-
-- 2. The previous Person class is written with ES5, now that we've learned about ES2015, convert the above code class to an ES2015 version using the new class syntax
+2. The previous Person class is written with ES5, now that we've learned about ES2015, convert the above code class to an ES2015 version using the new class syntax
 ```js
 function Person(first, last) { 
     this.first = first;        
@@ -430,11 +432,11 @@ const bob = new Person("Thomas", "Ochman")
 bob.fullName
 ``` 
 
+---
 
-<h2>PROTOTYPE</h2>
+
+## PROTOTYPE
 So when adding a prototype to a constructor function like Person, we add a parameter to that constor function ((like in Ruby when we add a attribute to a Person Class)).
-
-
 
 // ---------- ES5 ----------
 function getObj() {
@@ -445,7 +447,7 @@ function getObj() {
 const getObj = () => ({ a: 1, b: 2, c: 3 });
 
 
-<h2>explaination of THIS</h2>
+### explaination of THIS
 https://www.reddit.com/r/javascript/comments/7yki4d/explain_like_im_5_this/
 ELI5 would be:
 
@@ -456,16 +458,14 @@ Special case 1: if you call a "naked" function (in the global context), this is 
 Special case 2: If you don't like that rule, you can always bind a function, to explicitely set its this once and for all.
 
 Special case 3: If you don't like that rule, you can apply or call a function, to explicitely set its this just this one time.
-//
-
-
-<h2>In my own words: asynchronous code, Async and Await </h2> 
+ 
+#### In my own words: asynchronous code, Async and Await 
 source: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
 [HOMEWORK] - by own words explain what asynchronous code is, explain what async and await it. Slack Faraz with it before tomorrow morning! DONE.
 
-<b> Asynchronous code </b> is when we want our code to execute more than one thing at the same time. In synchronous code, our code executes one statement after the other, like in a que, before the code continutes the current statement needs to have been loaded and/or executed and/or finished. With asynchronous code the program doesn't have to wait for a specific (often data/time-demanding) statement/piece of code to execute, the (sometimes called) heavy-code can be executed/computed by another instance/processor-core/API whilst the program continues to run. The other instance lets the program know when the heavy-code has finished it's execution. 
+**Asynchronous code** is when we want our code to execute more than one thing at the same time. In synchronous code, our code executes one statement after the other, like in a que, before the code continutes the current statement needs to have been loaded and/or executed and/or finished. With asynchronous code the program doesn't have to wait for a specific (often data/time-demanding) statement/piece of code to execute, the (sometimes called) heavy-code can be executed/computed by another instance/processor-core/API whilst the program continues to run. The other instance lets the program know when the heavy-code has finished it's execution. 
 
-<b>Async</b>
+**Async**
 When one puts the async-keyword ``async```before a function declaration it turns the function declaration into an asynchronous function declaration automaticly. An async function knows how to interprate the possibly added await-keyword, Most importantly, an async function also turn any function into a promise. 
 
 You can put async-keywords before class/object methods to make them return promises and await promises inside the codeblock. 
@@ -492,7 +492,7 @@ or even just shorthand such as
 hello().then(console.log)
 ```
 
-<b>Await</b>
+**Await**
 The await-keyword is put in front of any promise-function (must be an async function!) where you want the code to stop and wait until the promise fulfills. During this waiting-time other code/tasks that may be in que to be exectued can execute, when the promise returns it's result the code continues with the next line. However, the await-keyword blocks all your code following the await-keyword until the promise is fulfilled and the result returned. ex.
 
 ```js
@@ -503,8 +503,9 @@ async function hello() {
 hello().then(alert);
 ```
 
+---
 
-<h1>Into to the adressbook challenge (week 2)</h1>
+# 10/9 Into to the adressbook challenge (week 2)
 
 Build an address book, with: name, adress, mobile number, image or avatar (later twitterfeed etc). On a website that is deployed for anyone to go in and add their details, or we can add their details. 
 
@@ -516,7 +517,8 @@ Build an address book, with: name, adress, mobile number, image or avatar (later
 - deploy to GitHub or Netify
 - Difference between running code on the server vs. browser
 
-<h2>BDD (behaviour driven development)</h2> Using Cucumber
+## BDD (behaviour driven development)
+**Using Cucumber**
 
 - reduce common wasteful activities
 - the Behaviour is the larger features of the application
@@ -524,7 +526,7 @@ Build an address book, with: name, adress, mobile number, image or avatar (later
 
 Using Cucumber to write featuretest/scenario, run the test in terminal, gives us output with failing tests, add that too code, makes so each of the steps pass. 
 
-<h2>LocalStorage</h2>
+## LocalStorage
 a type of webstorage that allows JS website/apps to store and access data right in the broswer - with no expiration date (the data stored in browser will persist even after the browser window has been closed).
 
 This means that if we deploy the site the info I have will not exist in Clarissas browser. 
@@ -535,7 +537,8 @@ Cookies are also stored in your browser - it's not direct LocalStorage though.
 
 Before every new feature you can to create a new branch! Then you merge the branch in - through a pullrequest, then create a new branch from the master branch for the next feature. 
 
-<h2>Whiteboard session about BDD</h2> Feature/acceptance testing
+## Whiteboard session about BDD
+*Feature/acceptance testing*
 Cucumber fills out the information in ex. a login page and clicks the 'login' button. 
 One can of course do this manually, but it's timeconsuming and stupid. Better to do automated testing like with cucumber. 
 
@@ -552,6 +555,4 @@ When should you just between BDD and TDD:
 When writing features/scenario we think like a user of the application. 
 Create a feature file, add scenario, write implementation code. We can mock up objects etc in our BDD code. 
 
-
-
-
+---

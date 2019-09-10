@@ -1,20 +1,20 @@
-<h1> Notes from the Bootcamp </h1>
+# Notes from the Bootcamp 
 
-<h2>Communication</h2>
+## Communication within the bootcamp
 STAY HUMBLE! Like a humblebumblebee 
-- Communicate too much - don't asume the other person understands you. 
+ Communicate too much - don't asume the other person understands you. 
 - Ask questions! All of them! Be precise: 
     - what doesn't work? 
     - why do you think it doesn't work?
     - what and how did you try to do?
 
-<b>Don't</b>: bulldoze, keep things to yourself, be intimidated, be passive aggressive/sarcastic, have a negative outlook - it is hard by design to challenge us.
+**Don't**: bulldoze, keep things to yourself, be intimidated, be passive aggressive/sarcastic, have a negative outlook - it is hard by design to challenge us.
 
 Daily tools: 
 - Slack (important messages save on computer, it deleted history after a few weeks). 
 All codeing questions in the main channel! 
 
-<b>Format your code</b> before you send it into slack! <i>```shift + enter for new line, write your code, end codeblock with ``` </i> Or add a `backtick`infront and at the end of the word or phrase for just a word/phrase. 
+**Format your code** before you send it into slack! *`shift + enter for new line, write your code, end codeblock with`* Or add a `backtick` infront and at the end of the word or phrase for just a word/phrase. 
 
 - morning Scrums at 9 o'clock. Be precise! 
     1. What have you been working on? (technical things)
@@ -26,11 +26,11 @@ All codeing questions in the main channel!
 - Restrospective: Everyotherweek, talk about personal struggles, positives, broad discussions.  
 - SALPS: personal reflections. 
 
-- <b>Working hours</b>: Mon-Fri 8:30 - 17:00 (19:00-21.30 sometimes)
+- **Working hours**: Mon-Fri 8:30 - 17:00 (19:00-21.30 sometimes)
 Coaches not avaliable Tues 10-11, Thurs 10-11, Sat and Sun. 
-<b>Office Hours </b>(coach is available) Mon, Wed, Thurs 19-20.30. Primarily debugging. 
+Office Hours (coach is available) Mon, Wed, Thurs 19-20.30. Primarily debugging. 
 
-- <b>Support Flow</b>
+- **Support Flow**
     - Check syntax & naming
     - Use Pry for debugging
     - Make sure you're in the right folder
@@ -53,42 +53,51 @@ If you've done all the steps, and still stuck, only allow 20 min before you ask 
 
 Concept questions - try to understand it, then ask. 
 
-<h1>Git tips</h1>
+---
+
+# Git tips
 To change the git origin master URL use the following:
-```git remote set-url origin new.git.url/here```
 
-Add ```git config core.autocrlf true``` to your git to avoid <i>warning: LF will be replaced by CRLF in lib/atm.rb.</i> warnings that can occur since I'm using a Mac/unix. 
+`git remote set-url origin new.git.url/here`
 
-```git reset --hard HEAD``` throws away any uncomitted changes
-```git stash``` stashed untracked files so that you call git pull from someone else. 
-```git stash drop``` deleted stashed files 
-To remove cruft files or clean your working directory run ```git clean```. To remove all the untracked files in your working directory, run ```git clean -f -d```, which removes any files and also any subdirectories that become empty as a result.
+Add `git config core.autocrlf true` to your git to avoid *warning: LF will be replaced by CRLF in lib/atm.rb.* warnings that can occur since I'm using a Mac/unix. 
 
+`git reset --hard HEAD` throws away any uncomitted changes
+`git stash` stashed untracked files so that you call git pull from someone else. 
+To discard changes in working directory `git checkout <file>`
+To deleted stashed files `git stash drop`
+To remove cruft files or clean your working directory run `git clean`. 
+To remove all the untracked files in your working directory, run `git clean -f -d`, which removes any files and also any subdirectories that become empty as a result.
 
-```git remote set-url origin URLoforiginrepo```
+`git remote set-url origin URLoforiginrepo`
 
-<h3>To create a new branch in Git and pull from your pairprogrammer when using yarn</h3>
+To check what contributors/origins: `$ git remote -v`
 
-```
-$ git checkout -b adding_contacts <this is the name of our branch>
-$ git remote add clarissa GitHubRepoUrl
-$ git pull clarissa adding_contacts
+### To create a new branch in Git and pull from your pairprogrammer when using yarn
 
+`$ git branch`shows your branches
+To abort/stop a git merge: `$ git merge --abort` this is preferred over  `$ git reset --hard HEAD`
+
+To add branch:
+`$ git checkout -b adding_contacts <this is the name of our branch>`
+`$ git remote add clarissa GitHubRepoUrl`
+`$ git pull clarissa adding_contacts`
 Go to VSC and click accept incomming or accept other thing if merge is prompted.
-
-$ yarn install
-§ yarn run cucumber
-§ yarn run build
-
-Write your code
-
-$ git push origin adding_contacts
-```
-
-to install a version of ruby: $rvm install ruby 2.3.1
+`$ yarn install`
+`§ yarn run cucumber`
+`§ yarn run build`
+All done, now write your code
+`$ git push origin adding_contacts`
 
 
-<h2> GIT PONG </h2>
+---
+
+
+To install a version of ruby: $rvm install ruby 2.3.1
+
+---
+
+# GIT PONG 
 First opens a repository and commits, second forks that repository, does git clone repo/url and starts coding and commits. The first then:
 Head over to your Terminal and add User 2’s GitHub repo as a second remote
 
@@ -100,39 +109,40 @@ $ git fetch user_2
 
 $ git pull beccaburns master
 
-TO REMEMBER Understand <b> instance_double!!! </b>
-
 To checkout a previous commit message so you can test things but they won't be saved in master/Head:
 $ git checkout idofcommit
 To go back to your master branch:
 $ git checkout master 
 
+---
 
-<h1> 3/9 Thomas Ochman demo about understanding the problem statement</h1>
+# 3/9 Thomas Ochman demo about understanding the problem statement
 
 We need to know what problems we need to solve and why to understand why our program is relevant. 
 
 By working agile and have incemential delivery of working solutions we help the team to step back and identify the true nature of the problem. And the user needs are kept front and center.
 http://agilemanifesto.org/principles.html
 
-<h3>The problem statement:</h3>
+### The problem statement:
 - explicit written statement of the problem, 
 - a fundamental step to set the direction of the project,
 - working without it leads to waste of time and effort. 
 The statements needs to be well scoped, shared and understood by all teammembers. Nees to have a defined current state and desired state, needs to measureable, short and not too complex. 
 
-<h3>User stories:</h3> to capture the requirements needed to deliver a soulution to the problem definition. Helps you understand WHAT to do. Has compoments: stakeholder (the problem owner who benefits from having the problem solved), the thing that needs/wants to be done.  
+### User stories:
+User stories capture the requirements needed to deliver a soulution to the problem definition. Helps you understand WHAT to do. Has compoments: stakeholder (the problem owner who benefits from having the problem solved), the thing that needs/wants to be done.  
 We can extract info from the user stories, like Class names, Method names, objects, states of objects, roles & their authorisations,  etc. 
 
 When naming it needs to be relevant, naming is a process and the chosen names might need to be changed due to irrelevance or becoming illogical. Choose the level of absraction wise 'food, drinks coffe' = product. 
 Normalize terminology among team members. 
 
-<b>Acceptance criteria </b> (or an agile definition of done) is when we've checked off all the boxes/needs from the user story. 
+**Acceptance criteria** (or an agile definition of done) is when we've checked off all the boxes/needs from the user story. 
 
+---
 
-<h1> Day 3: </h1>
+# Day 3:
 
-<b> Mathlog.10</b> 
+**Mathlog.10**
 Returns the base 10 logarithm of x.
 examples: 
 Math.log10(100)
@@ -149,9 +159,9 @@ The output is a Float, use .to_i to make it an integer, and add +1 to make it th
 Math.log2(2) => 1.0
 Math.log2(4) => 2.0
 
-<b> .strftime() vs. .strptime() or Time vs Date vs DateTime</b> 
+**.strftime() vs. .strptime() or Time vs Date vs DateTime**
 
-Always use ```require 'time' or 'date' or 'DateTime'```
+Always use `require 'time' or 'date' or 'DateTime'`
 Syntax ex.: strftime '27/04/2018'("%d-%m-%Y")
 %Y - year with century, %y - year in 2 digits.
 
@@ -159,7 +169,7 @@ Syntax ex.: strftime '27/04/2018'("%d-%m-%Y")
 - Strftime is a method in the Time class. Is timezone agnostic, good for measuring elapsed time. strftime is for "formatting time". 
 - Date class is a calendar date with no associated times. 
 
-<b> Magic numbers/ refactoring technique: introduce constant/extract constant/replace magic numbers with symbolic constant</b>
+**Magic numbers/ refactoring technique: introduce constant/extract constant/replace magic numbers with symbolic constant**
 Magic numbers are hardcoded numbers which can't be changed. To remove a magic number we use constants which are given SCREAMING_SNAKE_CASE names.
 
 ```rb example: 
@@ -178,53 +188,53 @@ class User < ActiveRecord::Base
 end
 ```
 
-<h2> demo Learning Strategies</h2>
-<h4>Using flash cards</h4>
+## Demo Learning Strategies with Faraz
+### Using flash cards
 Good for learning small facts, syndtax, methods, functions. There's apps: brainscape.com, monki. 
 - Rehearse on a daily basis. 
 - You don't add anything to a flashcard unless you've tried it out. So u get a question, try it out, on the back is the answer.
 
-<h4>Solve daily problems</h4>
+### Solve daily problems
 - start with solving small problems like create a small application for daily-use like grocery or to-do list. 
 - or scale it down into an array and push and pop things in/from it.
 
-<h4>Coding diary</h4>
+### Coding diary
 - write down the coding-related problems and solutions you found on a day-to-day-basis. 
 - simpler in the beginning, more conceptual later. 
 - only worthwhile if you do read it often, like 15 min a day like before u go to sleep.
 
-<h4>Feynman technique</h4> 
-<i>For conseptual things like concepts and components</i>
+### Feynman technique
+*For conseptual things like concepts and components*
 
 - explain a topic in plaing and simple language as if to a child
 - go over and find gaps in your understanding or explanation
 - repeat
 ** Write down the concept on the top of a page, then write your explanation step by step. When u hit a issue/gap, go back to your reference material. 
 
-<h4>Teaching others</h4>
+### Teaching others
 - explain basics to someone with no knowledge. 
 - increases your confidence, helps you to explain things in a way others understand. 
 - Huge part of working as a developer. 
 
-<h4>Metaphors</h4>
+### Metaphors
 <i>Good for remembering complecated concept. </i>
 - a simplified way of explaining a concept, by translating it into a realworld scenario or story. 
 
-<h4>Pre-questioning</h4>
+### Pre-questioning
 Inner dialogue of questioning what's happening each step of the way.
 - what will he say next?
 - why is he doing that?
 - why didn't he do what I though?
 - what will he do next?
 
-<h4>Other ways</h4>
+### Other ways
 - Mentorship (copy how another person is doing)
 - Rewrite notes after you've written them and make sure you understand.
 - Pragmatic reading (only the essentials).
 - experimentation/trail and error. 
 
 
-<h1>How to use the internet to find your answers demo with Faraz Naeem</h1>
+## How to use the internet to find your answers demo with Faraz Naeem
 
 You can google the errormessages but start with official documentation. 
 
@@ -232,7 +242,7 @@ You can google the errormessages but start with official documentation.
  Tip: Read the official documentation often & little by little, find a method and read about it.
 
 
-<h2>For Ruby </h2>
+### For Ruby 
 First check offical documentation: rubygems.org, ruby-doc.org
 
 - Rubygems.org
@@ -243,7 +253,7 @@ resource for sourcecode and debugging/if code isn't working.
 - Ruby-doc.org
  
 
-<h2>For JavaScript</h2>
+### For JavaScript
 First check: https://developer.mozilla.org
 
 *TO DO: read offical js documentation during weekend: asynchronous js.
@@ -251,7 +261,7 @@ First check: https://developer.mozilla.org
 npmjs.com
 - search here for whatever package you're building. This is official documentation for javascript packages. 
 
-<h2>Other ways</h2>
+## Other ways
 Do copy the entire errormessage. 
 (When working with deepwest? etc - do google it.)
 
@@ -272,4 +282,38 @@ Do copy the entire errormessage.
 - google: what are ?? ELI5 
 - google: WTF are ??
 
+---
 
+# Demo about AGILE with Thomas Ochman 10/9
+source the http://agilemanifesto.org
+Since I've read projectplanning and agile before, my notes here are sparse. 
+
+Kanban boards, LEAN are other methods concerning project-planning. 
+
+## Scrum
+timeboxes:
+- sprint planning meeting, 8hr max
+- sprint commitment meeting, 4 hrs max
+- sprint review meeting, 4 hr max
+- sprint retrospective meeting, 3 hr max
+- Daily Scrum meeting, 15 min max, standing UP!
+
+## Artifacts
+- Product Backlog (to-do list for the entire project)
+- Spring Backlog (to-do list for this specific sprint)
+- Brundown Chart (indicates how much work has been done and is remaining - updates daily)
+
+### Popular choice = Scrump + XP
+XP = extreme programming. 
+- Behaviour Driven Development
+- Test Driven Development
+- Pair-programming/collective code ownership
+- automated testing
+- refactoring
+- code review
+- continous integration
+- continous deployment
+
+ *working software is the primary measure of progress*
+
+---

@@ -1,4 +1,4 @@
-<h2> First week, ATM-challenge demo</h2>
+# First week, ATM-challenge demo
 ATM - prints out an amount of money to the right person. 
 Pieces: Person - ATM - Account (could have a debit card aswell)
 - The person Class needs: card, pin code, name, money. (class is an entity that creates or contains something. It has built in methods to use). A class has different things/methods/functions that do particular things. The class holds it together. 
@@ -14,7 +14,7 @@ In this challenge the visual layer will be the irb. Your data will also be store
 the logical layer will be touched upon this weekend. 
 the data layer we won't do anything with in this challenge. 
 
-<i>Demo demo - this is all in the coursematerial as well</i>
+*Demo demo - this is all in the coursematerial as well*
 Create ur mkdir in terminal, click the link in course material (get u to github), fork the repository, clone the url for my own repository, check git st, will see initial commit and updated readme. 
 Good idea to paste in the user story from the design sprint in the README. 
 Unitest ur code - means set up rspec: 

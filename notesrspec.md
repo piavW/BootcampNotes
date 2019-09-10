@@ -1,13 +1,13 @@
-<h1>demo advanced Rspec 4/9 with Faraz Naeem </h1>
+# demo advanced Rspec 4/9 with Faraz Naeem
 (beginners guides are in the repository: ITPcourse/notes/TDDnotes)
 
 R = ruby
 Spec = specification
 spec = example = text
 
-<b>Spec definition:</b> executable example that tests the code in controlled context. testing a portion of the code rather than all of the things connected to the code. 
+**Spec definition:** executable example that tests the code in controlled context. testing a portion of the code rather than all of the things connected to the code. 
 
-<i>simplified: Given some context, When some events occurs, Then I expect some outcome. </i>
+*simplified: Given some context, When some events occurs, Then I expect some outcome.*
 
 Why test?
 - helps to find bugs
@@ -27,11 +27,11 @@ What not to test:
 - third party API
 - behaviours that are already tested.
 
-<h2> Heart of RSpec</h2>
+## Heart of RSpec
 Write an expectation, see if it is met or not. expect().to ()
 expect().not_to ()
 
-<b>Matchers</b>
+**Matchers**
 - Truthiness matchers (compare true/false values)
 - Numeric-comparison matchers (compare numberic values)
 - Collection matchers (compare arrays)
@@ -57,16 +57,17 @@ expect().not_to ()
         expect(name.voldemort?).to be true
 
 Example of matchers:
-<i>expect().to eq() // eq is a matcher. </i>
+*expect().to eq() // eq is a matcher.*
 - eq, be, raise_error, 
 
-<h2>Hooks</h2>
+## Hooks
 When writing unit test, it is often convenient to run steup and teardown code before and after you run your tests. Setup code is the code that configures or "sets up" conditions for a test. 
 - Before - runs before the code
 - After - runs after the code
 - Around - runs during the code
 
-<b>Test doubles</b> allows you to test your code even when it relies on a calss that is undefiend or unavailable. they are stand-ins for objects. 
+## Test doubles -
+allows you to test your code even when it relies on a calss that is undefiend or unavailable. they are stand-ins for objects. 
 Different terms with slightly different usage. (ex. instance_double)
 - Mocks
 - Fakes
@@ -84,10 +85,11 @@ ex.
 book = double("book") #Creates a test double
 account = instance_double("Account", name: "Pablo")
 
+---
 
-<h1>demo about Debugging with Thomas Ochman, 5/9</h1>
+# demo about Debugging with Thomas Ochman, 5/9
 
-<h2> Debugging with RSpec </h2>
+## Debugging with RSpec 
 Pry is one of the best Ruby debuggers. If you have it installed, you have to require it in the place you want to use it. 
 
 By using a debugger you can get a sense of the current state of the object/application, which methods you can use, get answers to questions and bugs in your application. 
@@ -124,10 +126,10 @@ end
 It can be onelined: class Person; end
 #test again. 
 
-In the ```do .. end``` block, if we have an object we use { }, 
+In the `do .. end` block, if we have an object we use { }, 
 When execute commands we can use { }. 
 
-the ```before { commands here}```
+the `before { commands here}`
 means we issue commands within {}
 It's the same as: 
 ```rb 
@@ -139,7 +141,7 @@ FYI, attr_accessor is a built in method with getters and setters?
 :name is a getter
 :name= is a settermethod
 
-<b>To install pry (a debugger) </b>
+### To install pry (a debugger) 
 write gem 'pry' in Gemfile
 then write bundle in terminal
 require 'pry' in your spec_helper
@@ -153,7 +155,8 @@ end
 ```
 The command "binding.pry" stops the program at that specific place in the code. 
 
-<b>self </b>is a keyword which return the object itself that we have creates. Through self.class we can see which person it is. Through self.methods we can see the possible methods to use with that class. On the top of the method-list we usually see the methods we've created ourself. 
+### Self
+Self is a keyword which return the object itself that we have creates. Through self.class we can see which person it is. Through self.methods we can see the possible methods to use with that class. On the top of the method-list we usually see the methods we've created ourself. 
 
 self.class.respond_to?(:new) -> true
 self.respond_to?(:new) -> false
@@ -161,16 +164,14 @@ self.respond_to?(:name) -> true
 
 self.name= "Thomas" -> Thomas, if we put this under initialize the test goes green. 
 
-self.name = "Thomas" we usually do @name = "Thomas" were we set the instancevariable of name to "thomas"
-
-
-Cucumber is a testing framework for ruby? 
+self.name = "Thomas" we usually do @name = "Thomas" were we set the instancevariable of name to "thomas" 
 
 If we, in pry, write next we see what's next... 
 
 [WIP] <h2>Debugging with JavaScript </h2>
-In JS the command ```debugger```is put inside a javascript program. 
+In JS the command `debugger`is put inside a javascript program. 
 
 In browser, use inspect. 
 Thomas will get back to us. 
 
+---

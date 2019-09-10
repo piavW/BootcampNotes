@@ -53,7 +53,7 @@ If you've done all the steps, and still stuck, only allow 20 min before you ask 
 
 Concept questions - try to understand it, then ask. 
 
-<h2>Git tips</h2>
+<h1>Git tips</h1>
 To change the git origin master URL use the following:
 ```git remote set-url origin new.git.url/here```
 
@@ -64,7 +64,26 @@ Add ```git config core.autocrlf true``` to your git to avoid <i>warning: LF will
 ```git stash drop``` deleted stashed files 
 To remove cruft files or clean your working directory run ```git clean```. To remove all the untracked files in your working directory, run ```git clean -f -d```, which removes any files and also any subdirectories that become empty as a result.
 
+
 ```git remote set-url origin URLoforiginrepo```
+
+<h3>To create a new branch in Git and pull from your pairprogrammer when using yarn</h3>
+
+```
+$ git checkout -b adding_contacts <this is the name of our branch>
+$ git remote add clarissa GitHubRepoUrl
+$ git pull clarissa adding_contacts
+
+Go to VSC and click accept incomming or accept other thing if merge is prompted.
+
+$ yarn install
+§ yarn run cucumber
+§ yarn run build
+
+Write your code
+
+$ git push origin adding_contacts
+```
 
 to install a version of ruby: $rvm install ruby 2.3.1
 
@@ -252,3 +271,5 @@ Do copy the entire errormessage.
 
 - google: what are ?? ELI5 
 - google: WTF are ??
+
+

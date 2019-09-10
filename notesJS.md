@@ -412,7 +412,7 @@ Person("Thomas", "Ochman")
 
 As a class:
 ```js
-let Person = class { 
+Person = class { 
   constructor(first, last) {
     this.first = first;        
     this.last = last;
@@ -502,6 +502,56 @@ async function hello() {
 
 hello().then(alert);
 ```
+
+
+<h1>Into to the adressbook challenge (week 2)</h1>
+
+Build an address book, with: name, adress, mobile number, image or avatar (later twitterfeed etc). On a website that is deployed for anyone to go in and add their details, or we can add their details. 
+
+- Testdriven development approach - unittest in Mocha & Chai (unittesting zooms in on small portions of the application)
+- Behaviourdriven development approach - using Cucumber 
+- Branches!
+- Local storage
+- DOM (document object model - js interactino to the html-page) manipulation usin vanilla JavaScript API
+- deploy to GitHub or Netify
+- Difference between running code on the server vs. browser
+
+<h2>BDD (behaviour driven development)</h2> Using Cucumber
+
+- reduce common wasteful activities
+- the Behaviour is the larger features of the application
+- We are testing and creating the application in the same way the user would interact with the application. 
+
+Using Cucumber to write featuretest/scenario, run the test in terminal, gives us output with failing tests, add that too code, makes so each of the steps pass. 
+
+<h2>LocalStorage</h2>
+a type of webstorage that allows JS website/apps to store and access data right in the broswer - with no expiration date (the data stored in browser will persist even after the browser window has been closed).
+
+This means that if we deploy the site the info I have will not exist in Clarissas browser. 
+
+In your browsers inspec window under Application you can see what info is stored. 
+
+Cookies are also stored in your browser - it's not direct LocalStorage though.
+
+Before every new feature you can to create a new branch! Then you merge the branch in - through a pullrequest, then create a new branch from the master branch for the next feature. 
+
+<h2>Whiteboard session about BDD</h2> Feature/acceptance testing
+Cucumber fills out the information in ex. a login page and clicks the 'login' button. 
+One can of course do this manually, but it's timeconsuming and stupid. Better to do automated testing like with cucumber. 
+
+Add a unique scenario, in the step definition file you have your expect-blocks. 
+Creates scenarios for all types of users of the application, pagevisistor, admins etc. 
+
+When should you just between BDD and TDD: 
+1. start with the BDD (cucumber) featuretest and scenario
+2. work on the featuretest going green
+3. when error occurs which we can't handle/fix with featuretest, then we go to TDD(rspec) and change the backend/data/unittesting code. 
+4. Work on it through testing and passing the test in TDD.
+5. Jump back to BDD until that goes green, go back to TDD when necessary. 
+
+When writing features/scenario we think like a user of the application. 
+Create a feature file, add scenario, write implementation code. We can mock up objects etc in our BDD code. 
+
 
 
 

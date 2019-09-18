@@ -556,3 +556,54 @@ When writing features/scenario we think like a user of the application.
 Create a feature file, add scenario, write implementation code. We can mock up objects etc in our BDD code. 
 
 ---
+
+# demo Styling the addressbook with Faraz Naeem 11/9
+Using a semantic-UI: http://semantic-ui.com
+install through node or manual install through download.
+
+CDN (content delivery network), you need an internetconnection, the CDN needs to be up and running. Good for smaller projects, when we do larger projects where we want control we download a pakage. 
+
+googlesearch for: semantic-iu cdn, go to page, chose one called semantic.min.css copy the link. Go to your code, in the html, under Head tag, add <link rel="stylesheet" href="post the link here">
+
+The font should change - that's how you know the stylesheet is working.
+
+To change the button we go to semantic-ui webpage, chose a stylesheet for a button in the tab on the left. 
+CLick on link and you can see the sourcecode, copy the code which will be for a class. 
+In html you replace the button class="" with the new code. 
+If we change the class to an id, we can in app.js change the '.new-contact-form' to a '#new-contact-form' then it knows to look for an id instead of a class. Since we use document.querySelector...
+
+**read up on querySelector, classes and id in JS. 
+
+containers affect the elements, they're mobile friendly.
+
+when u change index.html or add styling, always run cucumber again because you'll be changing stuff and information.
+
+They work by replacing the classes. Semantic-ui is the most react-friendly one out there. 
+
+No need to add Jquery, to add animations - use vanilla JS. 
+
+Go banans with styling.
+remember to run cucumber on a regular basis to make sure ur not breaking code.
+style when you've completed the implementation code!
+
+styling is tough cause it's easy to get into a rabbit hole - make sure u commit on a regular basis!
+
+
+In the app.js we add the styling inbetween the backticks ``. 
+
+--- 
+
+
+## JS functions in own words:
+A function with an object as a parameter. 
+```js
+const functionname = objectparameter => {
+  objectparameter.propetyname = propertyvalue;}
+```
+Another function with a object as a parameter which has key:value pairs. 
+```js
+let spaceship = {
+  'Fuel Type' : 'Turbo Fuel',
+  homePlanet : 'Earth'
+};
+```

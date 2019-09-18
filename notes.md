@@ -317,3 +317,90 @@ XP = extreme programming.
  *working software is the primary measure of progress*
 
 ---
+
+
+# Lessons learned from html and JS
+In html you need to define the class before you add the action. example: `<form class="new-contact-form" action="#"> ` if you have the action before the class, html doesn't know what it is. 
+the Css and Js knows that we refer to a class when we put a dot before the class name `('.new-contact-form')`
+
+Some CSS to try to get things centered:
+#body{
+margin-left: 50%;
+    margin-top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+---
+
+# weekend challenge week 2: JavaScript FizzBuzz! with Faraz Naeem 13/9
+Individual challenge!
+
+Fizzbuzz kata, feature & unit tests, debug and find errors - there are errors in the code. Use the console for this. 
+- Find and remove unneccessary code and files!
+- Deploy to GitHubPages. 
+- Use branches!
+- answer the questions in the README!
+- Now we create our own repo and create a pullrequest towards our own masterbranch. The link to a pullrequests towards the masterbranch is the submission. Create masterbranch and development branch, from the developmentbranch you merge in all the code. 
+- gold star If we can deploy the project without merging to masterbranch. 
+
+---
+
+# demo about debugging with the chrome console, with Faraz Naeem 13/9
+Open inspect (through right-click in browser) When u refresh the page it's all gone back to the original code.
+
+- Elements-tab contains all the HTML we can see on the page
+  You can choose an element and change the elements html-code, styling
+- Console-tab displays alers, messages, console.log(), use it just like irb. 
+- sources-tab shows the sources like app.js
+
+To debug: go into inspect, in sources we can add breakpoints (by pressing the line-numbers on the left) to the source-code. This pauses the code next time we run it. 
+
+We can install the extension Debugger for Chrome. It adds the words: debugger; into the code. 
+
+By using pry or debugger-tool I'll learn to understand how data flows. 
+
+Suggests that we have this open continuously and use it whenever we're surprised. 
+
+
+
+---
+
+## Codewars pair-programming
+work with different ppl each time
+take a screenshot of the kata when done.
+
+IQ-test Ruby:
+```ruby
+def iq_test(numbers)
+ a = numbers.split(' ')
+ odds = 0
+ evens = 0
+ 
+ a.each do |n|
+   if n.to_i.odd? 
+   odds += 1
+   else
+   evens += 1
+   end
+  end
+  
+  if odds < evens
+    a.each do |n|
+      if n.to_i.odd?
+      numbeven = a.index(n).to_i
+      return numbeven +1
+      end
+    end
+  end
+  
+  if odds > evens 
+    a.each do |n|
+      if n.to_i.even?
+      numbodd = a.index(n).to_i
+      return numbodd +1
+      end
+     end
+    end
+end
+```
+

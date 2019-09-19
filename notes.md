@@ -369,7 +369,7 @@ Suggests that we have this open continuously and use it whenever we're surprised
 work with different ppl each time
 take a screenshot of the kata when done.
 
-IQ-test Ruby:
+### IQ-test Ruby:
 ```ruby
 def iq_test(numbers)
  a = numbers.split(' ')
@@ -404,3 +404,27 @@ def iq_test(numbers)
 end
 ```
 
+### Format a string o fnames like 'Bart, Lisa & Maggie' 
+```ruby
+def list names
+  if names.empty?
+    return ''
+  elsif names.length > 1
+    names.map! { |n| n.values }
+    a = names.pop
+      return names.join(', ') + ' & ' + a[0]
+  end
+    return names[0][:name]
+end
+```
+This is trying to be shorter but doens't remove first name and will add & even if it's only one name
+```ruby 
+def list names
+a = names.map{ |n| n[:name] }
+b = a.join(', ')
+b + ' & ' + a[0]
+
+end
+```
+
+---

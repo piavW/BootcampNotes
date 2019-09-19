@@ -175,3 +175,21 @@ index - is a built-in method in ruby to find the index of an array.
 So if we in library-challenge ask for 
 `collection.detec{|b| b[:item][:title] == b}` we ask it to find the exact input using the detec method. 
 `collecion.index {|b| b[:iteam][:title] == b}`it can find the index matching the title of previously inputted search.  
+
+---
+
+## Remove all instances of n from array
+ruby
+arr = [1, 3, 1, 3, 5]
+arr.delete(3)
+# now arr contains: [1, 1, 5]
+## Remove item by index
+ruby
+arr = [1, 3, 1, 3, 5]
+arr.delete_at(3)
+# now arr contains: [1, 3, 1, 5]
+## Conditional deletion with if
+ruby
+arr = [1, 3, 1, 3, 5]
+arr.delete_if { |i| i < 2 }
+# now arr contains: [3, 3, 5]

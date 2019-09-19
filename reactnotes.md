@@ -206,32 +206,18 @@ We can't define another method inside a functional component. This can only be d
 
 the method `ComponentDidMount(){}`, of all the lifecycle-event, is the most common one. 
 
-
 Shows us how to do a LogInForm in the demo.
 
-
-## Separation of concerns
-
-
 ---
-# To DO!
-
-#### to read up on: 
-- All the divs in our portfolio-challenge!
-- class vs className
-- Look at the official documentation for lifecycle phases
-- read up official doc of axios. 
-- React router
-- react Constructor
-- .bind
-
-#### Go through fizzbuzzJs and remove unused test files. 
-#### Go through addressboook challenge: 
-- make deletebutton a seperate function
-- remove comments from basic-step. 
+# Reminders for myself
 
 Remember that **if-statement syntax**: `if (jklfds==true) {} else {}`
 
-function declaration, is writing `function functionName () => {}`... the same as `const functionName () => {}` and also unnamed methods
-`functionName = () => {}` ...
+**Function declaration syntax:**
+`function functionName () => {}` 
+`const functionName () => {}` 
+**Unnamed methods syntax:** 
+`functionName = () => {}`
+
+
 ---

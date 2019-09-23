@@ -607,3 +607,16 @@ let spaceship = {
   homePlanet : 'Earth'
 };
 ```
+
+# Reminders for myself
+
+Remember that **if-statement syntax**: `if (jklfds==true) {} else {}`
+
+**Function declaration syntax:**
+`function functionName () => {}` 
+`const functionName () => {}` 
+**Unnamed methods syntax:** 
+`functionName = () => {}`
+
+
+---

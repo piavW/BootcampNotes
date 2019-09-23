@@ -209,15 +209,4 @@ the method `ComponentDidMount(){}`, of all the lifecycle-event, is the most comm
 Shows us how to do a LogInForm in the demo.
 
 ---
-# Reminders for myself
 
-Remember that **if-statement syntax**: `if (jklfds==true) {} else {}`
-
-**Function declaration syntax:**
-`function functionName () => {}` 
-`const functionName () => {}` 
-**Unnamed methods syntax:** 
-`functionName = () => {}`
-
-
----

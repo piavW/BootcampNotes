@@ -365,7 +365,7 @@ Suggests that we have this open continuously and use it whenever we're surprised
 
 ---
 
-## Codewars pair-programming
+# Codewars pair-programming
 work with different ppl each time
 take a screenshot of the kata when done.
 
@@ -427,4 +427,8 @@ b + ' & ' + a[0]
 end
 ```
 
+..
 ---
+
+
+

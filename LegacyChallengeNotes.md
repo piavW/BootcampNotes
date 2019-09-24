@@ -30,6 +30,10 @@ Only use the pivotaltracker.com for starting to store user stories, assign peopl
 
 
 The AUT cycle and RPS are for the evenings! Only work on legacycode during school-hours. 
+
+To check differences between branches:
+`$ git diff master..otherBranchName`
+
 ---
 
 # Team 2: Pia, Alex, Jonas, Luca, Miyesier, Sverrir. 
@@ -44,4 +48,19 @@ Issues in the legacy code:
 - We have both errormessages and alertboxes - CHOOSE ONE!
 - when getting a url it's not a hyperlink...
 - the application is a chat but they call it mailboxer with inbox etc. 
+
+.
 ---
+
+Tonight:
+- Work with corefunctionality: sending & composing messages 
+- Work with login and sign up. 
+
+Tomorrow - work downstairs a bit so we can get help from Faraz.
+We need to work quickly and efficiently. 
+
+### Code as much as humanly possible!
+If we have issues: ping Faraz or Oliver! 
+Don't get frozen!
+
+Ask questions straight away - we need to make a lot of progress! 

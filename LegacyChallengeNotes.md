@@ -32,7 +32,7 @@ Only use the pivotaltracker.com for starting to store user stories, assign peopl
 The AUT cycle and RPS are for the evenings! Only work on legacycode during school-hours. 
 ---
 
-# Team 2: Pia, Alex, Jonas, Luca, Miysier, Sverrir. 
+# Team 2: Pia, Alex, Jonas, Luca, Miyesier, Sverrir. 
 
 Issues in the legacy code:
 

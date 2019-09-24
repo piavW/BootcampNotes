@@ -146,13 +146,13 @@ IF YOU MERGE - REMEBER TO PULL IT DOWN!
 
  *commit*
 
- 9. In routes.rb we set the root-path we've previously added. `root controller: :landing, actoin: index:`
+ 9. In routes.rb we set the root-path we've previously added. `root controller: :landing, action: index:`
  And action is like a ruby method! Now landingController is an uninitialized constant. 
 
 10. `$ rails generate controller landing index` we generate a controller, gives it a name, and adds an action. 
 
 A controller is the thing which decides where the data should go. 
-Every controller will have a separete folder withing views, and it will have a seperate index-file. 
+Every controller will have a separete folder within views, and it will have a seperate index-file. 
 
 11. run cucumber again and we'll be able to go on the landing page so 1 test green.
 
@@ -162,7 +162,7 @@ Every controller will have a separete folder withing views, and it will have a s
 
 13. In our feature-file, we can add Background to the feature to populate the test database with information it will cross-check with the frontpage. The info inputted here will only run in the test-environment.
 
-14. when using Background and Given we need to update our step-definitions in basic_steps.rb. 
+14. when using Background and Given we need to update our step-definitions in **basic_steps.rb**. 
 
 15. since nothing exists in the database, we need to start working with models and unitspecs. 
 
@@ -218,10 +218,7 @@ end
 ```
 Then we add the @article to the app:views:landing:index.html.erb 
 ```rb
-<% @articles.each do |article| %>
-<%= article.title %>
-<%= article.content %>
-<%end%>
+ 
 ```
 Whatever is inside the <% %> is ruby code. Because it's embedded ruby. 
 When we don't have the = it doesn't print it out to the screen, it only runs it. So = means to run and print it out. 
@@ -236,6 +233,7 @@ Now we still don't have the content in real life since it's only in the testenvi
 3. To see all the arcitles`$ Article.all` to see amount of objects `puts Article.all` 
 
 Now we have the content for real in the database on our localcomputer and it's visible on our localhost.3000-server. 
+`$ rails server` or `$ rails -S` to run server. 
 
 ### we can make it prettier:
 4. in the app:view:landing:index.html.erb
@@ -248,6 +246,107 @@ add a h4 around the content, a <br> inbetween the two and at the end.
 Needs to be done before Tuesday morning (tomorrow), the edit and create functionallity needs to be completed by Friday!
 
 
+lägg in link to under 5.9 
+lägg in till routes.rb resources: articles under 5 getting up and runing. 
 
 
+
+
+### To destroy a model
+`$ rails destroy model nameOfModel`
+
+`$ rails db:drop`
+.
+---
+
+# demo Introduction to Legacy Code Challenge with Faraz Naeem, 24/9
+*Working with a new codebase* 
+
+*Legacy code* = source code inhetired from one else &/ inherited from an older version of the software. 
+
+### 7 Different approaches to unravel legacy code:
+1. Rubber ducking: explaining the code, out loud to a rubber duck.
+    When you have to explain it you'll find flaws, see where the code is breaking and notice the smaller details.
+
+2. Testing the software with Acceptande & Unit Test(AUT-cycle):
+    take a feature/functionality, add testing to that functionality.  
+
+3. Following the dataflow: 
+    Click around in the application and change small things in the codebase, like variablenames, and then you'll see how the data flows through the application. What methods are hit, what models are used, what gems are used. 
+        It's a hard thing to do but good for complex solutions. 
+
+4. History from commitmessages: 
+    Go through the commits to look at specific methods, values. 
+
+5. Changing the code: 
+    Go in and change bits-and-pieces, add and delete, to understand how it turns out. Good for dealing with lots of styling. 
+
+6.  Debuggers: stop the code execution, change or add a value and see what it does. (Chrome-console, Pry or others)
+
+7. Refactor code: advanced technique. Take a bit of a functionality and refactor the code. Good for dealing with frameworks/languages you already understand. 
+.
+---
+
+# demo Web architecture with Faraz Naeem 24/9
+
+#### Tier vs Layer
+**Layers** describe the logical groupings of functionality and componetns in an application - we decide where we put the code in different places.
+
+**Tiers** describe the physical distribution of the functionality and components on seperate servers, computers, networks etc. - we have to put code in certain places. 
+
+Although both layers and tiers use the same set of names(presentation, logic (business) and data) remember that only tiers imply a real separation.
+
+The 3 tiers:
+1. **Presentation tier**
+    the user interface, displays info related to services (menu, shoppingcart), communicates with the other tiers from the backend and pushes it forward to the client to collect and display results. 
+
+2. **logical tier** 
+    coordinate the application
+    processse commands and routes the traffic. 
+    makes logical decisions - should be allow this action?
+    evalutes and performs calculations
+    moves and processes data between the 2 surroundning tiers (presentation & data)
+
+3. **data tier**
+    persistence tier, information is stored and retrieved from a database/file system. 
+
+### Life cycle/data flow
+see PPdemo.
+
+### MVC (Model - view - controller) architectual pattern
+Remind yourself in which part of the application you are working?:
+- in the view?
+- the controller?
+- the model?
+- the database? 
+Should I be there?
+Should I be adding logic here?
+
+## Useful concepts
+- **HTTP protocol** (HyperText Transer Protocol) functions as a Request-Response protocol in the client-server computing model.
+
+- **URL** (Uniform Resource Locator is a reference to a web resource that specifies it's on a computer newtork and mechanism for retrieving it. Like an address. 
+
+- **Request Methods:**
+    - GET
+        asking the server to give your some information
+
+    - POST
+        asking the server to save/create something on the server/database.
+
+    - DELETE
+        asking the server to delete the information that already exist
+
+    - PUT/PATCH
+        asking the server to update some specific information that already exist.
+
+- **Server**
+is a computer program or device that proveds funtiocnlity for other programs/devices/clients. 
+ex. Application server, mail server, file server, web server. 
+
+
+
+
+.
+---
 

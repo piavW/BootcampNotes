@@ -63,10 +63,13 @@ To change the git origin master URL use the following:
 Add `git config core.autocrlf true` to your git to avoid *warning: LF will be replaced by CRLF in lib/atm.rb.* warnings that can occur since I'm using a Mac/unix. 
 
 `git reset --hard HEAD` throws away any uncomitted changes
-`git stash` stashed untracked files so that you call git pull from someone else. 
-To discard changes in working directory `git checkout <file>`
+`git stash` stashes untracked files so that you call git pull from someone else. 
+To discard changes in working directory `git checkout <file>`.
+
 To deleted stashed files `git stash drop`
+
 To remove cruft files or clean your working directory run `git clean`. 
+
 To remove all the untracked files in your working directory, run `git clean -f -d`, which removes any files and also any subdirectories that become empty as a result.
 
 `git remote set-url origin URLoforiginrepo`
@@ -75,25 +78,28 @@ To check what contributors/origins: `$ git remote -v`
 
 ### To create a new branch in Git and pull from your pairprogrammer when using yarn
 
-`$ git branch`shows your branches
+`$ git branch`shows your branches  
 To abort/stop a git merge: `$ git merge --abort` this is preferred over  `$ git reset --hard HEAD`
 
 To add branch:
 `$ git checkout -b adding_contacts <this is the name of our branch>`
 `$ git remote add clarissa GitHubRepoUrl`
-`$ git pull clarissa adding_contacts`
-Go to VSC and click accept incomming or accept other thing if merge is prompted.
-`$ yarn install`
-`§ yarn run cucumber`
-`§ yarn run build`
+`$ git pull clarissa adding_contacts`   
+
+Go to VSC and click accept incomming or accept other thing if merge is prompted.  
+`$ yarn install`  
+`§ yarn run cucumber`  
+`§ yarn run build`  
 All done, now write your code
 `$ git push origin adding_contacts`
 
 
+To check differences between branches:
+`$ git diff master..otherBranchName`
+
 ---
 
-
-To install a version of ruby: $rvm install ruby 2.3.1
+To install a version of ruby: $rvm install ruby 2.3.1 
 
 ---
 

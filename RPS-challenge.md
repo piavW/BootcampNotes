@@ -113,4 +113,52 @@ index.html
     </main>
 
 RANDOM! 
-randItem returns a random item from an array, randPick removes a random item from an array, and randPut puts a item at a random position in an array. And a seeded random (Not as good as Math.random but more than enough for most applications) 
+randItem returns a random item from an array, randPick removes a random item from an array, and randPut puts a item at a random position in an array. And a seeded random (Not as good as Math.random but more than enough for most applications).
+---
+
+https://stackoverflow.com/questions/7350363/select-a-random-string-from-an-array
+
+https://stackoverflow.com/questions/11377117/rock-paper-scissors-determine-win-loss-tie-using-math
+
+https://www.w3schools.com/jsref/event_onclick.asp
+
+https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
+https://stackoverflow.com/questions/1947263/using-an-html-button-to-call-a-javascript-function
+
+Code I've written and might use
+
+world.js
+```js
+//[WIP]
+  async stubComputerChoice(scissor){ 
+    const fakeCompChoi = sinon.stub(Math, 'floor').returns(scissor)
+    expect(fakeCompChoi).to.be.eq(scissor)
+  }
+//[/WIP]
+```
+App.js
+```js
+function Randomize() {
+    let variable = Math.floor(Math.random()*3)
+    return variable
+}
+``` 
+And then comment out `let randomIndex = Math.floor(Math.random()*3);` in ComputerChoice()
+
+app_spec.js
+`var sinon = require('sinon');`
+```js
+    //[WIP]
+    it('computer can randomly choose rock', () => {
+        let stubComp = ComputerChoice()
+        sinon.stub(Math, 'floor').returns(0)
+        expect(stubComp).to.eq(0)//[WIP] How to write this?
+    })
+
+    it('expect randomization', () => {
+        const result = Randomize()
+        console.log(result)
+        expect(result).to.include([0,1,2])
+    })
+```

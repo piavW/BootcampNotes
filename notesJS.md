@@ -81,7 +81,7 @@ function greeting() {
 greeting()
 ```
 
-When we use anonymous functions we dont' want to give them names cause we're only gonna use it once inside a certain scope. It's annoying to write function(){} over and over again. We use the rocket/arrow (hash-rocket in Ruby-speak). 
+When we use anonymous functions we don't want to give them names cause we're only gonna use it once inside a certain scope. It's annoying to write function(){} over and over again. We use the rocket/arrow (hash-rocket in Ruby-speak). 
 We can use let, const etc. 
 
 ```js
@@ -97,9 +97,9 @@ greeting()
 
 In the course-documentation:
 classes, array helpers, destructing assignment. 
-Send some ex. to Faraz in Slack. 
 
-Call-back is a function taht will run after another function is completeted. In that case we don't need to specify or delare the function in a certain way. We don't need to give it a name. Can just put 
+### Callback
+Call-back is a function that will run after another function is completeted. In that case we don't need to specify or delare the function in a certain way. We don't need to give it a name. Can just put 
 
 ```js
 (arguments, argument1) => {
@@ -107,7 +107,6 @@ Call-back is a function taht will run after another function is completeted. In 
 }
 ```
 
-*//I don't understand the below yet!
 If we put the let myGreeting inside the greeting-function only the greeting-function can read the let myGreeting. 
 
 ```js
@@ -141,14 +140,14 @@ This way of writing arrow functions is the same as the one above, but when we wr
 (param1, param2) => { return expression; }
 If we are writing arrow functions without parameters then we need to have brackets to define the function.
 
-() => { statments }
-() => expression
+() => { statments }  
+() => expression  
 () => { return expression; }
 
 You cannot use `return` outside of a function. 
 
 Example: 
-Original:
+Non-working
 ```js
 function greet(value, callback) {
   callback(value)
@@ -161,7 +160,7 @@ function cb(val) {
 greet('Ryan', cb) //gives us Sup but no Ryan.
 ```
 
-NEW and IMPROVED!! 
+Working 
 ```js
 function greet(value, callback) {
   callback(value)
@@ -174,7 +173,7 @@ function cb(val) {
 greet('Ryan', cb) //Gives us Sup Ryan, since we told the funciton cb to add the val after the sup in console.log()
 ```
 
-However, we can ommit the creating of the callback function completely, if we instead use the arrow function and write the following:
+However, we can ommit the creating of the callback function completely, if we instead use the arrow function and write the following in **ES6!**
 
 ```js
 function greet(value, callback) {
@@ -230,7 +229,7 @@ people.forEach(( {name, age} ) => {
 }) 
 ```
 
-When we put the parameters inside curly-brackets we change them from parameters to variables of the specified key value pairs created in the people array with hashes with key:value-pairs. We then don't need to specify the parameter before calling the key-name. *(I think I get this)*
+When we put the parameters inside curly-brackets we change them from parameters to variables of the specified key value pairs created in the people array with hashes with key:value-pairs. We then don't need to specify the parameter before calling the key-name. 
 
 We can also rename the :keys to something else:
 ```js
@@ -283,11 +282,11 @@ Source with good information: https://developer.mozilla.org/en-US/docs/Learn/Jav
 
 The problem is that the Processor - CPU - processes one thing at the time, it won't do the next thing before it's done with the thing it's doing, this creates a que and your program waits until it's finished, - this is **synchronous programming**.
 
-With **asynchronous programming** we execute more than one action/function at the same time. We have not stopping-actions. 
+With **asynchronous programming** we execute more than one action/function at the same time. We have no stopping-actions. 
 
 This allows multiple things to happen at the same time, when you start a blocking action, the program will carry on. When the action is finished, the program will be notified and will get access to the results.
 
-Asynchronous code is much faster than synchronous code (we're talking miliseconds), your code is cleaning, the user experience is better. 
+Asynchronous code is much faster than synchronous code (we're talking miliseconds), your code is cleaner, the user experience is better. 
 
 Solutions for async-code
 - callbacks (outdated now)
@@ -302,7 +301,9 @@ callback tell the program to wait until the next function completes.
 Once we start calling callbacks, we need to call them on and on and on which leads to a huge callback que aka callback hell. 
 
 ### Promises
-syntax: new Promise(
+syntax: 
+```js
+new Promise(
     function (resolve, reject){
         //here we create our resolve function {
         };
@@ -313,7 +314,7 @@ syntax: new Promise(
             }
    }
 );
-
+```
 
 ### Async/Await
 By placing async infront of a function that makes it asynchronous with a built in promise. 
@@ -438,14 +439,17 @@ bob.fullName
 ## PROTOTYPE
 So when adding a prototype to a constructor function like Person, we add a parameter to that constor function ((like in Ruby when we add a attribute to a Person Class)).
 
-// ---------- ES5 ----------
+---------- ES5 ----------  
+```js
 function getObj() {
   return { a: 1, b: 2, c: 3 };
-}
-// ---------- ES6 ----------
-// Note the () to differentiate with actual code block
+}  
+```
+---------- ES6 ----------  
+Note the () to differentiate with actual code block  
+```js
 const getObj = () => ({ a: 1, b: 2, c: 3 });
-
+```
 
 ### explaination of THIS
 https://www.reddit.com/r/javascript/comments/7yki4d/explain_like_im_5_this/
@@ -505,7 +509,7 @@ hello().then(alert);
 
 ---
 
-# 10/9 Into to the adressbook challenge (week 2)
+# 10/9 Intro to the adressbook challenge (week 2)
 
 Build an address book, with: name, adress, mobile number, image or avatar (later twitterfeed etc). On a website that is deployed for anyone to go in and add their details, or we can add their details. 
 

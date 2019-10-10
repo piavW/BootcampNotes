@@ -216,10 +216,8 @@ def index
 @articles = Articles.all
 end
 ```
-Then we add the @article to the app:views:landing:index.html.erb 
-```rb
- 
-```
+Then we add the `@article` to the app:views:landing:index.html.erb 
+
 Whatever is inside the <% %> is ruby code. Because it's embedded ruby. 
 When we don't have the = it doesn't print it out to the screen, it only runs it. So = means to run and print it out. 
 
@@ -248,9 +246,6 @@ Needs to be done before Tuesday morning (tomorrow), the edit and create function
 
 lägg in link to under 5.9 
 lägg in till routes.rb resources: articles under 5 getting up and runing. 
-
-
-
 
 ### To destroy a model
 `$ rails destroy model nameOfModel`
@@ -344,9 +339,425 @@ Should I be adding logic here?
 is a computer program or device that proveds funtiocnlity for other programs/devices/clients. 
 ex. Application server, mail server, file server, web server. 
 
+.
+---
 
+# demo The concept of the params hash, with Faraz Naeem, 25/9
+
+Params Hash (parameter hash, a hash with parameters = {key: value})
+It stores informatin passed from the users browser. Gives us the ability to use the users input in our applicaiton so we can create objects, display pages. 
+
+Different types of Params:
+- **Query string params**
+    as seen in the url, the quesry starts with ?, then we have the key & value (ex. http://google/../../?name=ferret)
+
+- **Route params** 
+    links to a specific object (article, product, blogpost etc)
+        - uses the id of the specific object
+    When u have a number at the end of the url it's a route param.
+
+- **Post params** sends information in order to create an object (article, product, blogpost etc), usually sent through a form. The info is stored in a param-hash. 
+
+Codeing example - see demo. 
+
+
+.
+---
+ ## Create Pull Request like a boss:
+
+[EXAMPLE]
+
+[PR-Title] Login Functionality
+Link to PT
+
+PR content
+In this PR we are adding login functionality with the help of the gem Devise.
+
+This PR contains: 
+Configurations for devise
+Login Views
+Feature tests
+A user model
+user model specs
+What I have learned
+How to configure devise
+How to create specs
+How to add login functionality to our rails application
+
+## Poetry mode
+you don't always have to use (), to not use () is called poetry mode, you don't have to use it, but be consistent. 
+No need to () on `visit landing_page`, `click_on button`, `click_link string`, `fill_in field, with: string`. 
+You can add **optional words** to When cucumber strings, like `When("I click on {string}( button)") do |string|`.
+You can also add interchangable words for click/press, like `When("I click/press on {string}( button)") do |string|`.
+.
+---
+
+# demo introduction to deploy with Heroku with Oliver Ochman 26/9
+
+Heroku - a cloud platform for deployment of applications, in our case. rails applications. 
+
+Official documentation: http://devcenter.heroku.com
+
+- On mac - install it with brew.
+- Sign up on Heroku.com
+
+- When installed you'll have the HerokuCLI - so in your Terminal you can write Heroku-commands.
+
+Under "Deploy your application to Heroku" do the commands. 
+
+To create the application on heroku `$ heroku create pia-rails-demo`
+To push the application to heroku `$ git remote -v` shows origin and now you have heroku remote added.
+`$ git push heroku master`
+
+If you bundle with a version above 2.0 you'll run into problems: solution is a buildpassage for Heroku - message Oliver. 
+
+To migrate our data-base `$ heroku run rails db:migrate` We don't need to create the database on heroku cause heroku does it for us. 
+
+NOw we should have an empty page on our heroku-page. CAuse we need to create articles. 
+`$ heroku run rails c`
+`Article.create(title: "Hello", content: "how are yu")`
+
+At the moment we need to push it up whenever we do a change - so commit and then push it up to git and then to heroku. 
+
+
+**Challenge today** - deploy our AUT applications (rails_demo).
+
+ISSUE: I have committed but it doesn't show on Heroku!!!!!!!!!
+
+---
+
+
+# demo about Validation with Faraz Naeem, 26/9
+Validations are a way for us to make sure that the infomation being saved into our database contains the relevant data. 
+
+Also important for ensuring that no malicious data orharmful data is added to our database. 
+
+Why use validation? 
+- *safety* less likely to be abused by hackers.
+- *performance* need fewer empty rows in our database = more concide = more efficient
+- *user experience* we give errormessages to user when they don't pass in the relevant data. 
+
+We prefer to add the validations to the MODEL because:
+- closer to the database
+- client side validation is not enough (have to use JavaScript to validate on the client-side, it's easy for an outsider to go in to the browser and disable JS)
+- controller validations are hard to maintain.
+
+Methods that we can use validations on: create, save update, and create!, save!, update!.
+
+Validation helpers
+- Acceptande - validates that a checkbox on the user interface was checked when a form was submitted.
+- Inclusion - validates that the attributes' values are included in a given set. 
+- Length - validates the length of the attributes' values.
+- Presence - validates that hte specified attributes are not empty.
+and many more - see rails guides validation. 
+---
+
+# Hangout with Oliver 27/9
+Usually we branch to development, branch off to rspec set-up, cucumber set-up with it's own pull-request. 
+
+**!!**Always branch off from development
+
+Otherwise you get the commits from the previous branch. 
+
+Branched from wrong branch but ok: Log in, View Trash, forgot password
+OK: Sign out, Sign up, 
+
+**!!**When finished a Pull Request - ping coaches for a review in Slack! Write in slack when you've changed a review. 
+
+We work with 3 step_definition-files:
+- **basic_steps.rb** for being on landing page, click on |element|, fill in. (we use element since button/link are html elements.)
+- **assertion_steps.rb** for assertions - expect something to happen i.e. (expect(page).to ...) Then-blocks and expect..
+- **specificTesting_steps.rb** like send messages or mailers only regarding something specific. 
+
+When it's a "then" we expect things to happen, since it's an assertion we use `expect(current_path).to.eq root_path`. 
+
+**!!** Make sure everyone in the group uses the same spaces and tab intendations!
+
+To pull upstream development: add upstream `$ git remote add upstream developmenturl (ex. https://github.com/CraftAcademy/rails_messaging-team2-september-2019.git)` `$ git pull upstream development` 
+-
+---
+
+# demo Routing with Faraz Naeem, 27/9
+Off.doc. http://guides.rubyonrails.org/routing.html
+
+Routing helps us use the HTTP-methods requests: Get (retrieves information from the database), Post, Put (updates the entire app), Patch (updates a specific part), Delete and creates pathways. 
+
+*The Terminalcommand `$ rails routes` shows you all the routes available in your application.*
+- *Prefix* -the stuff we add in our code
+- *Verb* - what kind of HTTP-action is takes
+- *URI Pattern* - what we see in our url/browser
+- *Controller#Action* - what controller and action is will hit
+
+`root controller: :posts, action: :index ` is the first page that we come to. Here we specify a controller that we're gonna send the user to posts#index. This saves us from creating a specific controller for root. 
+
+To limit the routes available we specify `resources :articles, only: [:index, :show, :edit]`
+
+
+### Resouceful routing
+CRUD-verbs & actions (CRUD = create, read, update, delete).
+
+By adding `resources :articles` to the config routes.rb-file, we give the articles-controller access to the articles-resources different routes that correspond with the HTTP-methods actions/requests. 
+
+![CRUD-image](crud.png)
+
+Path & URL-helper: use _path 
+
+### Non-resouceful routing
+Old way to write routes: 
+`get './articles/new, controller: :articles, action: :new'` 
+`get './articles/new', to: 'articles/new'`
+This isn't used to writing new software like articles anymore. Used with APIs. 
+
+## Namespace
+When we have multiple controllers that deal with similar things we wanna **organize** the routes under a specific folder. And group our controller routes.
+
+We put the namespace code inside Routes-file!
+```rb
+namespace :newOfFolder do 
+    resources :resourceControllerName1, :resourceControllerName2
+end
+```
+
+## Nested routes
+Nested routes is when we have a specific sub-model which belongs to a specific controller model. This is about **functionality**.  
+
+ex. a Magazine-model - januaryEdition of that magazine - januaryEditions articles. 
+```rb
+resources :magazines do
+    resources :articles
+end
+```
+.
+---
+
+# WeekendChallenge intro 27/9
+User Authenticaton with Devise
+
+**Authentication** can be defined as process of verifying someone's identity by pre-required details (commonly username and password).
+
+**devise** is rackbased, a complete MVC solution based on Rails engines, based on modulatiry concept (use only what u really need).
+
+Challenge: 
+- read Devise [off.doc](https://github.com/plataformatec/devise)
+- Add login functionality to AUT-challenge
+- Only allow logged in user to view articles.
+    - feature test
+    - unit test the user model we will add
+- make a [WIP] PR towards ur own development branch
+- Submit PR before Monday morning in slack.
+
+Important to `$ rails generate device user` (or modelname u want to have)
+add the `before_action : authenticate_user!`
+
+WIP PR towards our own repo
+[WIP]Weekend Challenge, devise implementation
+
+Do it like the log in for the group-challenge scenario!
+Assertion is that they should be able to see the article. 
+And sad paths!
+
+Do not push it up to heroku. 
+---
+
+# Rails recap - folder structure, with Faraz Naeem, 1/10
+
+**App** (stores controllers, modells and views)
+- assets - holds stylesheets, images, config-folder for javascript, links to directories that we use in our JS code - like a pop-up or specific styling.
+- channel (framworks), like application_cabel: channel and connection which control chat-funcionality.
+- controller - holds applicationcontroller which takes in funtionality from Actioncontroller. 
+Here we add our different controllers.
+  - concerns - whenever we extract a function or method or funtioncality from controllers which we use for majority of our controllers, we add then to the concerns folder - our refactored code lives here.  
+- helpers - helpermethods
+- javascript all our JS 
+  - channels
+  - packs 
+- jobs - a function u run on a regular basis, not triggered by a specific event, on a timer
+- mailers - works with Actionmailer, deals with any emails being sent in or out
+- models - business logic as Classes
+  - concern - deals with refactored code
+- views. Partials: Navbar, form, footer is something we add to a partional. A partial is refactored code. 
+  - layouts - all of the diofferent views
+
+**Bin** - deals with setup
+
+**Config** - routes etc 
+  - environments - development, production and test (from Gemfile) If we want to overwrite something in the testing or production we do it here
+  - initializers - contains files that kick in when our server starts. 
+  - locales - our translation files (for static things)
+  - webpack - used for JS and environments configurations.
+  
+Config files:
+    - Application.rb - where we turn off  the generators. Generators are mechanism for scaffolding code, it creates a lot of files for us. But it also generates stylesheets and other code which we don't need - which is why we turn it off. 
+    - cable.yml - where we tell Actionserver it's own server
+    - credentials - holds all our credentials ex. encrypted_password, info for your heroku-account. 
+    - masterkey - stored locally - never uploaded to git - added to .gitignore, used to access credentials folder and add/remove info from there. 
+    - database.yml - config file for databases for different environments
+    - puma - our webserver
+    - routes.rb 
+    - spring - load up the right rubyversion from our computer
+    - storage.yml - if we use activestorage and need to configure it.
+ 
+**db** 
+- migrate - holds migrationfiles, has files with model-content-table/structure of our database. 
+- schema.rb - never touch
+- seeds.rb - where we can input our rails console command to create a new model `article = Article.create(title: "..")` and the seeds will do it for us. When pull it down - bundle, rails db:migrate, rails db:seed. You need to run the seed file for it to populate your database with the content in the seeds. 
+
+**lib**
+ - assets 
+ - tasks
+
+ **log** interesting for debugging - development.log has all the entries we do in our server. 
+
+**node_modules** hold our nodes
+
+**public** static pages that are displayed when server is down
+
+**storage** information about ActiveStorage
+
+**test** is instead of our Spec-folder, rails has a built in test-framework which is why we do skip-test when we build our application - since we use cucumber and RSpec
+
+**tmp** database settings and other temporary files
+
+**vendor** thirdparty static code which can't be added to any other folder (rarely used for us)
+.
+---
+
+# demo Active Record Basis, with Thomas Ochman, 2/10
+
+For more see [ruby off.doc](https://guides.rubyonrails.org/active_record_querying.html)
+
+the M in MVC (model view controller), is the layer that represents the business data logic.
+
+It's ORM - Object Relational Mapping. 
+
+### Naming conventions 
+- database table: plural with snake_case: underscores separating words. e.g. people, order_items, articles
+- model class: singluar with the first letter of each word capatalized, PascalCase e.g. Person, OrderItem, Article
+
+### Schema conventions
+- Foreign keys: name following the pattern singularized_table_name_id
+- Primary keys: Active REcord will use an integer column named id as table primary key
+- This column is created automaticly
+
+## Create Active Record Models
+`$ rails generate model Article title:string content: text`
+```rb
+class Article < Application Record
+end
+```
+
+The **new** method will instantiate the new object, then you set the title and content and then you have to use the .save command to save it to the database
+```rb
+article = Article.new
+article.titile = 'Learning Rails'
+puts article.title
+```
+
+The **create** method will instantiate the new object and save it to the database, also performs validations.
+```rb
+article = Article.create(title: "title here", content: "content here")
+```
+
+CRUD (Create - Read - Update - Delete) the things you can do to an object in a database. 
+
+#### ACCESS your objects:
+```
+articles = Article.all
+article = Article.first
+article = Article.last
+article = Article.find_by(title: "title here")
+```
+
+When we have stored all articles in "articles" we can actually use it as if it is an array. 
+So we can call a specific article from articles by `articles[0]`
+or `article.email`    `article[:email]`  `article['email']`
+`user.find 1` finds user with id of 1. 
+
+Can also search by `article.find_by_email "email@mail.se"`
+
+`user.where email "email@mail.se"` will always return it as a collection. 
+
+
+**To update**
+```rb
+article = Article.find_by(title: "title here")
+article.update(title: "new titile", )
+```
+or you can do the longer verion 
+```rb
+article1.title = "new title"
+article1.save
+```
+`article1.reload` reloads & displays article1 
+If we do `.reload` before we save it, it will not be changed
+
+
+**To delete**
+```rb
+article = Article.find_by(title: "title here")
+article.destroy
+```
+To destroy everyting: `Article.destroy_all`
+
+
+## Migrations
+- alter database schema over time 
+- use Ruby DSL (domain specific language), no need to write SQL
+- schema & changes need to be DB independent
+- stored in db/migrate
+- migration name: YYYYMMDDHHMMSS_create_articles.rb
+
+**Changing existing migrations** don't do it - write a new migration instead.
+
+See [off. doc](https://edgeguides.rubyonrails.org/active_record_migrations.html)
 
 
 .
 ---
 
+# mob-session Advanced Routing, with Oliver Ochman 3/10
+
+To test that we see a string in the right place: Scenario:
+`Then I should see "Lasagna" in the "Main" section`
+```rb
+Then('I should see {string} in the {string} section') do |product, category|
+product_category = Category.find_by(name: category)
+dom_section = "#category_#(product_category.id)"
+within(dom_section) do
+expect(page).to have_content product
+end
+```
+
+Add `@categories = Categories.all` to view. 
+
+Inside the product-list in index.html.haml we add a `.div{id: dom_id(category)}` right after the Categories each do...
+
+Add the Given the following products exist datatable in feature-scenario
+Basic step:
+```rb
+Given("the following products exists") do |table|
+  table.hashes.each do |table|
+    category = Category.find_or_create_by(title: product[:category])
+    table.except!('category') 
+    FactoryBot.create( :product, table.merge(category: category))
+  end
+end
+```
+We use `table.except!('category')` because the category in the feature-step database table is a string and we want the real thing ge create on `category = Category.find_or_create_by(title: product[:category])`. 
+    The factoryBotline tells us to merge the factories-settings for database-table with the given data-base we show in the feature-background. And we want the actual category to create it. 
+
+To create a object models database-table with the associated models(the belongs to model) foreign-key`$ rails g object model Product name:string category:references`
+
+To update a created models: `$ rails g migration AddProductsToCategory` within that def change add: `add_foreign_key :products, :category end`
+or within def change`add_reference :products, :category, foreign_key: true`
+
+Don't forget to add `describe 'Associations' do it { is_expected.to have_many :products} end` to the spec-file. 
+
+And to add the `belongs_to` and `have_many` to the view:models being associated. The have_many makes it so that category can create products and call on the association through the category and products, the belongs_to makes it to that product can't be created without a category.
+
+And add `category` to products factory. 
+.
+
+Since products belongs to categories we can do `main.products.create(name: "gorbys", description: "..", price: 3)`
+.
+---

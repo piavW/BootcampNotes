@@ -348,3 +348,303 @@ Options:
 
 
 ---
+
+# demo Stripe, with Thomas Ochman 10/10
+Have to do:
+- Sign up for Stripe
+- Never add your publishable or secret keys online - we will encrypt them!
+
+Uses GEM:
+- chromedriver-helper
+- selenium-driver (rather use gem 'webdriver' because chromedriver-helper is deprecated)
+
+Add some feature tests to make sure we can access the website: Given I visit homepage, Then I should see "hello". 
+
+`$ rails g controller course index show (specify actions)`
+
+Update routes.rb: `root controller: :courses, action: index, show`
+
+Create index page and add some h1 content.
+
+---
+Now that we know the website is accessable - delete the old featurefile. 
+
+### Write a new feature file 
+named: visitor can purchase a course.
+Add userstory...
+```
+Background:
+Given the following courses exists
+  | title       |
+  | JS Intro    |
+  | React Intro |
+Given I visit the application
+```
+**adding @javascript makes cucumber use selenium driver!!**
+```
+@javascript 
+Scenario:
+  Given I click on "Buy" for course "JS Intro"
+  Then I should be on a purchase page 
+  And I fill in the Stripe field "CC Number" with "4242424242424242"
+  And I fill in the Stripe field "Expiry date" with "01/2022"
+  And I fill in the Stripe field "CVC" with "123"
+  And I submit the Stripe form 
+  Then I should see "Thank you!"
+```
+ ### Update basic_steps
+Given I visit the application.. `visit root path`
+
+Given the following courses exists... 
+```rb
+table.hashes.each do |course_hash| 
+ FactoryBot.create(:course, course_hash)
+```
+```rb
+Given I click on {string} for course {string} do |button_text, course_title|
+course = Course.find_by_title course_title
+within("#course_#{course.id}") do
+click_on button_text
+end
+end
+```
+
+
+In controller add`@courses = Course.all` under index
+
+In index.html.haml:
+```haml
+- @courses.each do |course| 
+  #div
+    = course.title
+    = link_to "Buy", "#"
+```
+
+### Create a Charges controller with 2 actions: new and create 
+`$ rails g controller charges new create --skip_routes` To skip the auto-generated routes in routes.rb so we can set them manually. 
+  Delete unnecessary: view create, spec charges_controller_spec, spec/views, spec/helper/chegers, app/assets/stylesheets.
+
+Go into config: routes:
+`resources :charges, only [:new, create]`
+
+Change in view: index, add new_charge_path(id: course.id) instead of "#" dummypath. 
+
+In controller: charges_controller:
+```rb
+def new
+  @course = Course.find(params:[id])
+end
+```
+
+In charges: new.html.haml `%h1 Payment form for %= @course.title` 
+
+### Mount the form
+
+step definitions:
+```rb
+Then("I fill in the Stripe field {string} with {string}") do |input_field, value|
+  stripe_frame = find("iframe[name='__privateStripeFrame5']")
+  case input_field
+  when "CC Number"
+    field = 'cardnumber'
+  end
+  within_frame(stripe_frame) do
+    find(field).send_keys(value)
+  end
+end
+```
+
+Inside view: layout: application.html in head div: `%script src="https://js.stripe.com/v3/"`
+
+In our view:charges:new.html.haml
+```haml
+%form_with url: charges_path, local: true, method: :post, id: :charge_form do
+  #card-element
+
+```
+
+Inside the APP: assets: javascript: under the require block
+*The turbolinks:load is instead of DOMLoaded*
+```js
+require("@rails/ujs").start() require("turbolinks").start()
+
+const initiateStripe = (stripeForm) => {
+  const stripe = Stripe('public_key')
+  const elements = stripe.elements()
+  const card = elements.create('card')
+  card.mount('#card-element')
+}
+
+document.addEventListener('turbolinks:load', () => {
+  let stripeForm = document.getElementById('charge_form')
+  if (stripeForm) {
+    initiateStripe(stripeForm)
+  }
+})
+```
+---
+
+## Demo Stripe part 2
+Removes chromedriver helper, re-adds webdrivers version 4? Didn't do much but removes deprication warning. 
+Set it in env.rb the version depends on ur chrome-version. Also needs to incluce headless because if we run in headless mode then we can find th elements:
+
+
+CHAGNED step:
+```rb
+Then("I fill in the Stripe field {string} with {string}") do |input_field, value|
+  case input_field
+  when "CC Number"
+    frame_name = '#card-number div iframe'
+    field_name = 'cardnumber'
+    when "Expiry date"
+  frame_name = '#card-expiry div iframe'
+  field_name = 'exp-date'
+    when "CVC"
+  frame_name = '#card-cvc div iframe'
+  field_name = 'cvc'
+  end
+  stripe_frame= find(frame_name)
+  within_frame stripe_frame do
+    page.driver.browser.find_element(name: field_name).send_keys(value)
+  end
+end
+
+Then("I submit the stripe form") do
+  click_on 'Submit Payment'
+end
+```
+
+New/changed code in application.js. We want to send back the (below) created token to the backend and to stripe, so we create a hidden inputfield.
+```js
+const initiateStripe = (stripeForm) => {
+const stripe = Stripe(public_key)
+const elements= stripe.elements()
+let cardNumber = elements.create('cardNumber')
+let cardExpiry = elements.create('cardExpiry')
+let cardCVC = elements.create('cardCvc')
+cardNumber.mount('#card-number')
+cardExpiry.mount('#card-expiry')
+cardCVC.mount('#card-cvc')
+
+stripeForm.addEventListener('submit', () => {
+  event.preventDefault()
+  stripe.createToken(cardNumber, cardExpiry, cardCVC).then((result) => {
+    const hiddenField = document.createElement('input')
+    hiddenField.setAttribute('type', 'hidden')
+    hiddenField.setAttribute('name', 'stripeToken')
+    hiddenField.setAttribute('value', result.token.id)
+    stripeForm.appendChild(hiddenField)
+    stripeForm.submit()
+  })
+})
+
+}
+```
+
+### see printscreens!!!
+Add to App: Models: Charges: new.html.haml form_with: 
+`form.hidden_field :course_id, value: @course.id`
+and add
+`form.label :email`
+and add
+`form.text_field :email` 
+
+
+Charges_controller.rb
+```rb
+def create
+  course = Course.find params[:course_id]
+
+  customer = Stripe::Customer.create(
+    email: current_user.email,
+    source: params['stripeToken'],
+    description: "#{current_user.email}"
+  )
+
+  charge = Stripe::Charge.create(
+    customer: customer.id,
+    amount: 100 * 100,
+    currency: 'sek',
+    description: "Purchase of #{course.title}"
+  )
+
+  if charge[:paid] == true
+    redirect_to root_path, notice: "Thank you"
+  else
+    redirect_to root_path, notice: "That transaction did not work, please try again."
+  end
+end
+``` 
+If it costs 100kr you need to do 100*100 because stripe works in cents/öre. 
+We can also do `customer = ... description: "Customers email is #{params[:email]}"`
+
+
+we want *current_user.toggle.subscription to true???*
+
+Modify feature-step with "And I fill in "Email" with "mail""
+Steps: fill_in field, with: value
+
+
+#### Gemfile: add gem 'stripe-rails'
+It's now when we're performing the charge that we want to get the gem. 
+
+bundle the gem
+go into your credentials and add stripe api keys:
+```yml
+stripe:
+  publishable_key: pk_test_....
+  secret_key: sk_test_....
+```
+
+Config: application.rb
+```rb
+config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
+config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
+```
+
+## to stub out stripe for testing
+add to group development :test `gem 'stripe-ruby-mock'`
+
+In features: support: env.rb we want to create a hook for the scenarios that use stripe
+```rb
+Before '@stripe_step' do
+  chrome_options << 'headless'
+  StripeMock.start
+end
+
+After '@stripe_step' do
+  StripeMock.stop
+end
+```
+
+#### Mark the stripe scenario with @stripe_step next to @javascript
+
+In Charges controller
+remove source, and add `source: get_token(params),`
+
+in the same file but at the bottom add:
+```rb
+private
+
+def get_token(params)
+  Rails.env.test? ? StripeMock.create_test_helper.generate_card_token : params[:stripeToken]
+end
+```
+
+Can add `Then I wait 2 seconds` to feature-file to make cucumber wait 2 seconds so the mock has time to run. 
+
+Remember that every step we are running that includes stripe needs to be tagged with @javascript and our @stripe_step to be stubbed out. 
+
+---
+
+To myself:
+Lägg in Membership belongs_to :user
+och User has_one :membership
+som booleon true eller false.
+
+READ up on Params!
+
+The Beautify for VSC?
+Have a look at indentation and cucumbersteps (when, then, and etc)
+
+

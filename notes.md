@@ -1,5 +1,13 @@
 # Notes from the Bootcamp 
 
+## HTML: span, div, script basics
+The `<span> </span>` tag is used for grouping and applying styles to inline elements. 
+Which is different from the `<div> </div>` tag which is used for grouping and applying styles to block-level content. 
+
+To use Javascript inside the html dokument without creating a new .js file the javascript code can be wrapped within `<script type="text/javascript">code here</script>`.
+
+---
+
 ## Communication within the bootcamp
 STAY HUMBLE! Like a humblebumblebee 
  Communicate too much - don't asume the other person understands you. 
@@ -324,20 +332,6 @@ XP = extreme programming.
 
 ---
 
-
-# Lessons learned from html and JS
-In html you need to define the class before you add the action. example: `<form class="new-contact-form" action="#"> ` if you have the action before the class, html doesn't know what it is. 
-the Css and Js knows that we refer to a class when we put a dot before the class name `('.new-contact-form')`
-
-Some CSS to try to get things centered:
-#body{
-margin-left: 50%;
-    margin-top: 50%;
-    transform: translate(-50%, -50%);
-}
-
----
-
 # weekend challenge week 2: JavaScript FizzBuzz! with Faraz Naeem 13/9
 Individual challenge!
 
@@ -366,8 +360,6 @@ We can install the extension Debugger for Chrome. It adds the words: debugger; i
 By using pry or debugger-tool I'll learn to understand how data flows. 
 
 Suggests that we have this open continuously and use it whenever we're surprised. 
-
-
 
 ---
 

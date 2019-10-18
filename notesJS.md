@@ -624,3 +624,14 @@ Remember that **if-statement syntax**: `if (jklfds==true) {} else {}`
 
 
 ---
+
+# Lessons learned from HTML and JS
+In html you need to define the class before you add the action. example: `<form class="new-contact-form" action="#"> ` if you have the action before the class, html doesn't know what it is. 
+the Css and Js knows that we refer to a class when we put a dot before the class name `('.new-contact-form')`
+
+Some CSS to try to get things centered:
+#body{
+margin-left: 50%;
+    margin-top: 50%;
+    transform: translate(-50%, -50%);
+}

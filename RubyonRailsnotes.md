@@ -761,3 +761,111 @@ And add `category` to products factory.
 Since products belongs to categories we can do `main.products.create(name: "gorbys", description: "..", price: 3)`
 .
 ---
+
+# demo Advanced associations, with Oliver Ochman, 11/10.
+Connections between models 
+
+### Belongs_to
+Needs to have what it belongs to
+
+### has_one
+Doesn't need to have it, but it can have it.
+
+### has_many
+zero or one to many connection with another model, often on the other side of a belongs_to association. 
+
+### has_many :through
+has many connections through a third model. Like Physician has many patients through appointments. Physician doesn't have_many patients on it's own. An appointment can only exist if there is a patient and a physician. 
+
+### has_and_belongs_to_many
+Connection to many models with connection through a third model. Has to have a connection, can't exist without the other ones. 
+
+## Mob-session example of a forum with users and posts:
+To generate a Forum model: `$ rails g model Forum name:string`
+
+To generate a user model: `$ rails g model User name:string`
+
+Migrate when you've created a model. `$ rails db:drop db:create db:migrate`
+
+*Business logic:* A forum needs to have many posts, a user also needs to have many posts. So posts needs to belong to user and to forum.
+
+To generate a model Post with association to the models user and forum.
+`$ rails g model Post body:string user:references forum:references`
+This will have a user foreign key and a forum foreign key. 
+
+Migrate again `$ rails db:migrate`. 
+
+In *rails C* we can check Post.connection (do the same for forum and user). We can see that Post has id, body, user_id, forum_id created_at etc.
+
+Add association of `has_many :posts` to class Forum under App:models. 
+
+Add association of `belongs_to :user` and `belongs_to :forum` to class Post under App:models. 
+
+#### In rails c, 
+create `$ user = User.create(name: 'Faraz')`
+
+create `$ forum = Forum.create(name: 'Sports')`
+
+create `$ post_1 = Post.create(user_id: 1, forum: forum, body: 'Some text about sports')`
+user can be called with the user-object, or the user_id. Forum can be called with forum-object or forum_id. 
+
+To display the posts that the created forum has`$ forum.posts` gives us an array. 
+
+Can also to `$ user.posts.first`
+Can also to `$ user.posts.first.forum.posts.first.user` which is super deep, and is the same as writing `$ user`
+
+
+To see a error message `$ failed_post.errors` failed_post is the variable to a post we failed to create. 
+
+To see the error message in a test (to display a error message or similar)`$ variableForWhatYou'veCreated.errors.full_messages`
+
+If we're creating a post directly form the forum:
+`$ post_2 = forum.posts.create(body: 'second comment', user: user)` then we don't have to add in which forum it's associated with in the (). 
+
+Can also do `$ post_3 = user.posts.create(forum: forum, body: 'third comment!')`
+
+Can do `$ current_user.posts.create(forum: forum. body: 'text')`
+
+**Can't do** `$ post_4 = user.forum.create()` because user and forum has no association to each other.  
+
+
+#### new example to be able to like a post
+Like doesn't have any attributes.
+`$ rails g model Like post:references user:references`
+    Migrate
+
+*business logic* A user should be able to have many likes on different posts, but should also be able to see how many likes his posts have gotten. 
+
+Add to class Like:
+`belongs_to :users`
+`belongs_to :posts`
+Add to class Post:
+`has_many :likes`
+Add to class User:
+`has_many :likes`
+
+
+#### In rails C
+Change user to faraz. `$ faraz = User.first`
+
+`$ noel = User.create(name: 'Noel')`
+
+Noel is gonna like the second post from Faraz:
+`$ noels_like = Like.create(user: noel, post: faraz.posts[1])`
+
+To see noels likes: `$ noel.likes`
+
+`faraz.posts[1].likes` now shows that Farax has 1 like on his second post. 
+`faraz.posts.first.likes` shows up empty since no-one has liked that post. 
+
+Add to class User the association has_many:through  
+`has_many :post_likes, through: :posts, source: :likes` *post_likes* is a variable and can be named anything. 
+
+To see who liked his first post: 
+`$ faraz.post_likes.first.user`
+
+
+We want to save a recipe, but we want to add notes - then we can have a user model, a recipe model, and a saved recipe model. So we can add stuff to the saved recipe model object and not change the original recipe model object.  
+
+
+---
